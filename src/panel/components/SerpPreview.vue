@@ -67,6 +67,7 @@ export default {
     this.titleSeparator = response.titleSeparator ?? "–";
     this.titleContentKey = response.titleContentKey;
     this.descriptionContentKey = response.descriptionContentKey;
+    this.searchConsoleUrl = response.searchConsoleUrl;
   },
 
   methods: {
