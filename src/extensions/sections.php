@@ -13,13 +13,15 @@ return [
                 /** @var \Kirby\Cms\App $kirby */
                 $kirby = $this->kirby();
 
-                if (is_string($siteTitle) && str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
-                    $siteTitle = str_replace(['{{', '}}'], '', $siteTitle);
-                    $query = new Query($siteTitle);
-                    $resolvedQuery = $query->resolve();
+                if (is_string($siteTitle)) {
+                    if (str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
+                        $siteTitle = str_replace(['{{', '}}'], '', $siteTitle);
+                        $query = new Query($siteTitle);
+                        $siteTitle = $query->resolve();
+                    }
                 }
 
-                return $resolvedQuery ?? $kirby->site()->title()->value();
+                return $siteTitle ?? $kirby->site()->title()->value();
             },
             'siteUrl' => function ($siteUrl = null) {
                 /** @var \Kirby\Cms\App $kirby */
@@ -28,10 +30,10 @@ return [
                 if (is_string($siteUrl) && str_starts_with($siteUrl, '{{') && str_ends_with($siteUrl, '}}')) {
                     $siteUrl = str_replace(['{{', '}}'], '', $siteUrl);
                     $query = new Query($siteUrl);
-                    $resolvedQuery = $query->resolve();
+                    $siteUrl = $query->resolve();
                 }
 
-                return $resolvedQuery ?? $kirby->site()->url();
+                return $siteUrl ?? $kirby->site()->url();
             },
             'titleSeparator' => fn ($titleSeparator = null) => $titleSeparator,
             'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
