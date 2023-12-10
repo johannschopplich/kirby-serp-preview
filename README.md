@@ -1,3 +1,5 @@
+![Kirby Search Engine Result Page Preview](./.github/kirby-serp-preview.png)
+
 # Kirby SERP Preview
 
 Kirby Panel plugin for search engine result page previews.
