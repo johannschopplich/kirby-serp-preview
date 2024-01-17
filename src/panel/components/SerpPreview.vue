@@ -5,6 +5,7 @@ import LocaleMixin from "../mixins/locale.js";
 
 export default {
   mixins: [SectionMixin, LocaleMixin],
+  inheritAttrs: false,
 
   data() {
     return {
