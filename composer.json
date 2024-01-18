@@ -2,7 +2,7 @@
   "name": "johannschopplich/kirby-serp-preview",
   "description": "Kirby Panel plugin for search engine result page previews",
   "type": "kirby-plugin",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "keywords": [
     "content",
     "DeepL",
