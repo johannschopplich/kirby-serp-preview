@@ -51,16 +51,16 @@ The `titleContentKey` section property allows you to define a custom content key
 
 The following options are available:
 
-| Option                  | Type    | Default                    | Description                                                                                                                                                                                 |
-| ----------------------- | ------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `defaultLanguagePrefix` | Boolean | `true`                     | Whether to add the language prefix to the `siteUrl` for the default language in multi-language setups.                                                                                      |
-| `faviconUrl`            | String  | `null`                     | The URL to the favicon.                                                                                                                                                                     |
-| `siteTitle`             | String  | `"{{ site.title.value }}"` | The site title.                                                                                                                                                                             |
-| `siteUrl`               | String  | `"{{ site.url }}"`         | The site URL.                                                                                                                                                                               |
-| `titleSeparator`        | String  | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set or as fallback if the `titleContentKey` field value is empty. Also supports queries. |
-| `titleContentKey`       | String  | `null`                     | The content key for a custom title.                                                                                                                                                         |
-| `descriptionContentKey` | String  | `null`                     | The content key for the page's custom description.                                                                                                                                          |
-| `searchConsoleUrl`      | String  | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                                                                  |
+| Option                  | Type    | Default                    | Description                                                                                                                                                    |
+| ----------------------- | ------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `defaultLanguagePrefix` | Boolean | `true`                     | Whether to add the language prefix to the `siteUrl` for the default language in multi-language setups.                                                         |
+| `faviconUrl`            | String  | `null`                     | The URL to the favicon.                                                                                                                                        |
+| `siteTitle`             | String  | `"{{ site.title.value }}"` | The site title.                                                                                                                                                |
+| `siteUrl`               | String  | `"{{ site.url }}"`         | The site URL.                                                                                                                                                  |
+| `titleSeparator`        | String  | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set the target field value is empty. Also supports queries. |
+| `titleContentKey`       | String  | `null`                     | The content key for a custom title.                                                                                                                            |
+| `descriptionContentKey` | String  | `null`                     | The content key for the page's custom description.                                                                                                             |
+| `searchConsoleUrl`      | String  | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                                     |
 
 ## License
 
