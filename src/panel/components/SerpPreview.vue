@@ -65,7 +65,7 @@ export default {
     this.faviconUrl = response.faviconUrl;
     this.siteTitle = response.siteTitle;
     this.siteUrl = response.siteUrl;
-    this.titleSeparator = response.titleSeparator ?? "–";
+    this.titleSeparator = response.titleSeparator;
     this.titleContentKey = response.titleContentKey;
     this.descriptionContentKey = response.descriptionContentKey;
     this.searchConsoleUrl = response.searchConsoleUrl;
@@ -110,9 +110,11 @@ export default {
         {{
           currentContent[titleContentKey]
             ? currentContent[titleContentKey]
-            : `${$panel.view.title} ${(
-                titleSeparator || "–"
-              ).trim()} ${siteTitle}`
+            : [
+                $panel.view.title,
+                titleSeparator === false ? "" : titleSeparator,
+                siteTitle,
+              ].join(" ")
         }}
       </h3>
 

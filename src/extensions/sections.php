@@ -35,10 +35,10 @@ return [
 
                 return $siteUrl ?? $kirby->site()->url();
             },
-            'titleSeparator' => fn ($titleSeparator = null) => $titleSeparator,
+            'titleSeparator' => fn ($titleSeparator = null) => is_string($titleSeparator) ? trim($titleSeparator) : $titleSeparator,
             'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
             'descriptionContentKey' => fn ($descriptionContentKey = null) => $descriptionContentKey,
-            'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl,
+            'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ]
     ]
 ];

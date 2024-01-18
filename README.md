@@ -32,24 +32,35 @@ sections:
     type: serp-preview
     siteTitle: "{{ site.title.value }}"
     siteUrl: "{{ site.url }}"
+    # Optional field to override the computed title
     titleContentKey: metaTitle
     descriptionContentKey: metaDescription
 ```
+
+## Usage
+
+### Page Title
+
+By default, the SERP preview will render the title of the search engine result page preview by connecting the following values with a space:
+
+**Page Title** + **Title Separator** (defaults to `–`) + **Site Title**
+
+The `titleContentKey` section property allows you to define a custom content key for the page's title. If it is set and the field contains a value, it will override the computed title.
 
 ## Configuration
 
 The following options are available:
 
-| Option                  | Type      | Default                    | Description                                                                                                                                                           |
-| ----------------------- | --------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `defaultLanguagePrefix` | `boolean` | `true`                     | Whether to add the language prefix to the `siteUrl` for the default language in multi-language setups.                                                                |
-| `faviconUrl`            | `string`  | `null`                     | The URL to the favicon.                                                                                                                                               |
-| `siteTitle`             | `string`  | `"{{ site.title.value }}"` | The site title.                                                                                                                                                       |
-| `siteUrl`               | `string`  | `"{{ site.url }}"`         | The site URL.                                                                                                                                                         |
-| `titleSeparator`        | `string`  | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set or as fallback if the text for the `titleContentKey` is empty. |
-| `titleContentKey`       | `string`  | `null`                     | The content key for a custom title.                                                                                                                                   |
-| `descriptionContentKey` | `string`  | `null`                     | The content key for the page's custom description.                                                                                                                    |
-| searchConsoleUrl        | `string`  | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                                            |
+| Option                  | Type                | Default                    | Description                                                                                                                                                                                                                                             |
+| ----------------------- | ------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `defaultLanguagePrefix` | `boolean`           | `true`                     | Whether to add the language prefix to the `siteUrl` for the default language in multi-language setups.                                                                                                                                                  |
+| `faviconUrl`            | `string`            | `null`                     | The URL to the favicon.                                                                                                                                                                                                                                 |
+| `siteTitle`             | `string`            | `"{{ site.title.value }}"` | The site title.                                                                                                                                                                                                                                         |
+| `siteUrl`               | `string`            | `"{{ site.url }}"`         | The site URL.                                                                                                                                                                                                                                           |
+| `titleSeparator`        | `string \| boolean` | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set or as fallback if the text for the `titleContentKey` is empty. To disable the connecting string between model and site title, set it to `false`. |
+| `titleContentKey`       | `string`            | `null`                     | The content key for a custom title.                                                                                                                                                                                                                     |
+| `descriptionContentKey` | `string`            | `null`                     | The content key for the page's custom description.                                                                                                                                                                                                      |
+| `searchConsoleUrl`      | `string`            | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                                                                                                                              |
 
 ## License
 
