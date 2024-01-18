@@ -43,7 +43,7 @@ sections:
 
 By default, the SERP preview will render the title of the search engine result page preview by connecting the following values with a space:
 
-**Page Title** + **Title Separator** (defaults to `–`) + **Site Title**
+1️⃣ **Page Title** + 2️⃣ **Title Separator** (defaults to `–`) + 3️⃣ **Site Title**
 
 The `titleContentKey` section property allows you to define a custom content key for the page's title. If it is set and the field contains a value, it will override the computed title.
 
