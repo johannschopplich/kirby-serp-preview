@@ -108,13 +108,8 @@ export default {
 
       <h3 class="ksp-mb-1 ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
         {{
-          currentContent[titleContentKey]
-            ? currentContent[titleContentKey]
-            : [
-                $panel.view.title,
-                titleSeparator === false ? "" : titleSeparator,
-                siteTitle,
-              ].join(" ")
+          currentContent[titleContentKey] ||
+          [$panel.view.title, titleSeparator, siteTitle].join(" ")
         }}
       </h3>
 
