@@ -1,7 +1,7 @@
 <script>
 import { joinURL, withLeadingSlash } from "ufo";
-import SectionMixin from "../mixins/section.js";
-import LocaleMixin from "../mixins/locale.js";
+import SectionMixin from "../mixins/section";
+import LocaleMixin from "../mixins/locale";
 
 export default {
   mixins: [SectionMixin, LocaleMixin],
