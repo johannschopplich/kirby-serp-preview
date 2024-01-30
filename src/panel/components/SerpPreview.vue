@@ -1,85 +1,96 @@
 <script>
 import { joinURL, withLeadingSlash } from "ufo";
-import SectionMixin from "../mixins/section";
-import LocaleMixin from "../mixins/locale";
+import {
+  computed,
+  defineComponent,
+  ref,
+  usePanel,
+  useSection,
+  useStore,
+  watch,
+} from "kirbyuse";
+import { section } from "kirbyuse/props";
+import { useLocale } from "../composables/locale";
 
-export default {
-  mixins: [SectionMixin, LocaleMixin],
+export default defineComponent({
   inheritAttrs: false,
-
-  data() {
-    return {
-      label: undefined,
-      defaultLanguagePrefix: undefined,
-      faviconUrl: undefined,
-      siteTitle: undefined,
-      siteUrl: undefined,
-      titleContentKey: undefined,
-      titleSeparator: undefined,
-      descriptionContentKey: undefined,
-      searchConsoleUrl: undefined,
-      url: "",
-    };
+  props: {
+    ...section,
   },
+});
+</script>
 
-  computed: {
-    currentContent() {
-      return this.$store.getters["content/values"]();
-    },
-    path() {
-      if (!this.url) return "";
+<script setup>
+const props = defineProps({});
 
-      if (!this.$panel.multilang) {
-        const url = new URL(this.url);
-        return url.pathname;
-      }
+const panel = usePanel();
+const store = useStore();
+const { getNonLocalizedPath } = useLocale();
 
-      let path = this.getNonLocalizedPath(this.url);
+const label = ref();
+const defaultLanguagePrefix = ref();
+const faviconUrl = ref();
+const siteTitle = ref();
+const siteUrl = ref();
+const titleContentKey = ref();
+const titleSeparator = ref();
+const descriptionContentKey = ref();
+const searchConsoleUrl = ref();
+const url = ref("");
 
-      if (!this.defaultLanguagePrefix) {
-        if (!this.$panel.language.default) {
-          path = joinURL(this.$panel.language.code, path);
-        }
-      } else {
-        path = joinURL(this.$panel.language.code, path);
-      }
+const currentContent = computed(() => store.getters["content/values"]());
+const path = computed(() => {
+  if (!url.value) return "";
 
-      return withLeadingSlash(path);
-    },
+  if (!panel.multilang) {
+    const _url = new URL(url.value);
+    return _url.pathname;
+  }
+
+  let path = getNonLocalizedPath(url.value);
+
+  if (!defaultLanguagePrefix.value) {
+    if (!panel.language.default) {
+      path = joinURL(panel.language.code, path);
+    }
+  } else {
+    path = joinURL(panel.language.code, path);
+  }
+
+  return withLeadingSlash(path);
+});
+
+watch(
+  () => panel.language.code,
+  async () => {
+    const { url } = await panel.api.get(panel.view.path);
+    url.value = url;
   },
+  { immediate: true },
+);
 
-  watch: {
-    "$panel.language.code": {
-      async handler() {
-        const { url } = await this.$api.get(this.$panel.view.path);
-        this.url = url;
-      },
-      immediate: true,
-    },
-  },
+(async () => {
+  const { load } = useSection();
+  const response = await load({
+    parent: props.parent,
+    name: props.name,
+  })();
 
-  async created() {
-    const response = await this.load();
-    this.label = this.t(response.label) || "SERP Preview";
-    this.defaultLanguagePrefix = response.defaultLanguagePrefix ?? true;
-    this.faviconUrl = response.faviconUrl;
-    this.siteTitle = response.siteTitle;
-    this.siteUrl = response.siteUrl;
-    this.titleSeparator = response.titleSeparator;
-    this.titleContentKey = response.titleContentKey;
-    this.descriptionContentKey = response.descriptionContentKey;
-    this.searchConsoleUrl = response.searchConsoleUrl;
-  },
+  label.value = t(response.label) || "SERP Preview";
+  defaultLanguagePrefix.value = response.defaultLanguagePrefix ?? true;
+  faviconUrl.value = response.faviconUrl;
+  siteTitle.value = response.siteTitle;
+  siteUrl.value = response.siteUrl;
+  titleSeparator.value = response.titleSeparator;
+  titleContentKey.value = response.titleContentKey;
+  descriptionContentKey.value = response.descriptionContentKey;
+  searchConsoleUrl.value = response.searchConsoleUrl;
+})();
 
-  methods: {
-    joinURL,
-
-    t(value) {
-      if (!value || typeof value === "string") return value;
-      return value[this.$panel.translation.code] ?? Object.values(value)[0];
-    },
-  },
-};
+function t(value) {
+  if (!value || typeof value === "string") return value;
+  return value[panel.translation.code] ?? Object.values(value)[0];
+}
 </script>
 
 <template>
@@ -109,7 +120,7 @@ export default {
       <h3 class="ksp-mb-1 ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
         {{
           currentContent[titleContentKey] ||
-          [$panel.view.title, titleSeparator, siteTitle].join(" ")
+          [panel.view.title, titleSeparator, siteTitle].join(" ")
         }}
       </h3>
 
