@@ -36,6 +36,7 @@ const siteUrl = ref();
 const titleContentKey = ref();
 const titleSeparator = ref();
 const descriptionContentKey = ref();
+const descriptionFallback = ref();
 const searchConsoleUrl = ref();
 const url = ref("");
 
@@ -85,6 +86,7 @@ watch(
   titleSeparator.value = response.titleSeparator;
   titleContentKey.value = response.titleContentKey;
   descriptionContentKey.value = response.descriptionContentKey;
+  descriptionFallback.value = response.descriptionFallback;
   searchConsoleUrl.value = response.searchConsoleUrl;
 })();
 
@@ -129,17 +131,12 @@ function t(value) {
         v-show="currentContent[descriptionContentKey]"
         class="ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
       >
-        {{ currentContent[descriptionContentKey] }}
+        {{ currentContent[descriptionContentKey] || descriptionFallback }}
       </p>
     </div>
 
     <k-button-group v-show="searchConsoleUrl" class="ksp-mt-2 ksp-w-full">
-      <k-button
-        :link="searchConsoleUrl"
-        icon="open"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <k-button :link="searchConsoleUrl" icon="open" target="_blank">
         Google Search Console
       </k-button>
     </k-button-group>

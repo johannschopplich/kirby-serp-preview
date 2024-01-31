@@ -34,9 +34,6 @@ return [
                 return $siteUrl ?? $kirby->site()->url();
             },
             'titleSeparator' => function ($titleSeparator = null) {
-                /** @var \Kirby\Cms\App $kirby */
-                $kirby = $this->kirby();
-
                 if (is_string($titleSeparator) && str_starts_with($titleSeparator, '{{') && str_ends_with($titleSeparator, '}}')) {
                     $query = new Query(substr($titleSeparator, 2, -2));
                     $titleSeparator = $query->resolve();
@@ -46,6 +43,14 @@ return [
             },
             'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
             'descriptionContentKey' => fn ($descriptionContentKey = null) => $descriptionContentKey,
+            'descriptionFallback' => function ($descriptionFallback = null) {
+                if (is_string($descriptionFallback) && str_starts_with($descriptionFallback, '{{') && str_ends_with($descriptionFallback, '}}')) {
+                    $query = new Query(substr($descriptionFallback, 2, -2));
+                    $descriptionFallback = $query->resolve();
+                }
+
+                return $descriptionFallback ?? '';
+            },
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ]
     ]

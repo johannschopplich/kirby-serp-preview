@@ -35,6 +35,8 @@ sections:
     # Optional field to override the computed title
     titleContentKey: metaTitle
     descriptionContentKey: metaDescription
+    # Optional fallback if the field above is empty
+    descriptionFallback: "{{ site.metaDescription.value }}"
 ```
 
 ## Usage
@@ -60,6 +62,7 @@ The following options are available:
 | `titleSeparator`        | String  | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set the target field value is empty. Also supports queries. |
 | `titleContentKey`       | String  | `null`                     | The content key for a custom title.                                                                                                                            |
 | `descriptionContentKey` | String  | `null`                     | The content key for the page's custom description.                                                                                                             |
+| `descriptionFallback`   | String  | `null`                     | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                        |
 | `searchConsoleUrl`      | String  | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                                     |
 
 ## License
