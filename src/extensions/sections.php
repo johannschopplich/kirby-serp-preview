@@ -1,7 +1,7 @@
 <?php
 
-use Kirby\Toolkit\I18n;
 use Kirby\Query\Query;
+use Kirby\Toolkit\I18n;
 
 return [
     'serp-preview' => [
