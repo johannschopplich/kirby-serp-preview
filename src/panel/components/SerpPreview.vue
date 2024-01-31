@@ -12,16 +12,17 @@ import {
 import { section } from "kirbyuse/props";
 import { useLocale } from "../composables/locale";
 
+const propsDefinition = {
+  ...section,
+};
+
 export default defineComponent({
   inheritAttrs: false,
-  props: {
-    ...section,
-  },
 });
 </script>
 
 <script setup>
-const props = defineProps({});
+const props = defineProps(propsDefinition);
 
 const panel = usePanel();
 const store = useStore();
