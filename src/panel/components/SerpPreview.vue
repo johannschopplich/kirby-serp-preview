@@ -65,8 +65,8 @@ const path = computed(() => {
 watch(
   () => panel.language.code,
   async () => {
-    const { url } = await panel.api.get(panel.view.path);
-    url.value = url;
+    const data = await panel.api.get(panel.view.path);
+    url.value = data.url;
   },
   { immediate: true },
 );
@@ -76,7 +76,7 @@ watch(
   const response = await load({
     parent: props.parent,
     name: props.name,
-  })();
+  });
 
   label.value = t(response.label) || "SERP Preview";
   defaultLanguagePrefix.value = response.defaultLanguagePrefix ?? true;
@@ -120,7 +120,7 @@ function t(value) {
         </div>
       </div>
 
-      <h3 class="ksp-mb-1 ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
+      <h3 class="ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
         {{
           currentContent[titleContentKey] ||
           [panel.view.title, titleSeparator, siteTitle].join(" ")
@@ -128,8 +128,8 @@ function t(value) {
       </h3>
 
       <p
-        v-show="currentContent[descriptionContentKey]"
-        class="ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
+        v-show="currentContent[descriptionContentKey] || descriptionFallback"
+        class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
       >
         {{ currentContent[descriptionContentKey] || descriptionFallback }}
       </p>
