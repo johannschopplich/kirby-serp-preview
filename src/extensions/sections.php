@@ -9,15 +9,18 @@ return [
             'label' => fn ($label = null) => I18n::translate($label, $label),
             'defaultLanguagePrefix' => fn ($defaultLanguagePrefix = null) => $defaultLanguagePrefix,
             'faviconUrl' => fn ($faviconUrl = null) => $faviconUrl,
+            'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
+            'descriptionContentKey' => fn ($descriptionContentKey = null) => $descriptionContentKey,
+            'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
+        ],
+        'computed' => [
             'siteTitle' => function ($siteTitle = null) {
                 /** @var \Kirby\Cms\App $kirby */
                 $kirby = $this->kirby();
 
-                if (is_string($siteTitle)) {
-                    if (str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
-                        $query = new Query(substr($siteTitle, 2, -2));
-                        $siteTitle = $query->resolve();
-                    }
+                if (is_string($siteTitle) && str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
+                    $query = new Query(substr($siteTitle, 2, -2));
+                    $siteTitle = $query->resolve();
                 }
 
                 return $siteTitle ?? $kirby->site()->title()->value();
@@ -41,8 +44,6 @@ return [
 
                 return $titleSeparator ?? '–';
             },
-            'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
-            'descriptionContentKey' => fn ($descriptionContentKey = null) => $descriptionContentKey,
             'descriptionFallback' => function ($descriptionFallback = null) {
                 if (is_string($descriptionFallback) && str_starts_with($descriptionFallback, '{{') && str_ends_with($descriptionFallback, '}}')) {
                     $query = new Query(substr($descriptionFallback, 2, -2));
@@ -50,8 +51,7 @@ return [
                 }
 
                 return $descriptionFallback ?? '';
-            },
-            'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
+            }
         ]
     ]
 ];
