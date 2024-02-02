@@ -1,14 +1,6 @@
 <script>
 import { joinURL, withLeadingSlash } from "ufo";
-import {
-  computed,
-  defineComponent,
-  ref,
-  usePanel,
-  useSection,
-  useStore,
-  watch,
-} from "kirbyuse";
+import { computed, ref, usePanel, useSection, useStore, watch } from "kirbyuse";
 import { section } from "kirbyuse/props";
 import { useLocale } from "../composables/locale";
 
@@ -16,9 +8,9 @@ const propsDefinition = {
   ...section,
 };
 
-export default defineComponent({
+export default {
   inheritAttrs: false,
-});
+};
 </script>
 
 <script setup>
