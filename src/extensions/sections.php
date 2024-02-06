@@ -18,56 +18,32 @@ return [
         ],
         'computed' => [
             'siteTitle' => function () {
-                $value = $this->siteTitle;
-
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
-                /** @var \Kirby\Cms\Page */
-                $model = $this->model();
 
-                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
-                    $value = $model->query(substr($value, 2, -2));
-                }
-
-                return $value ?? $kirby->site()->title()->value();
+                return $this->tryResolveQuery($this->siteTitle, $kirby->site()->title()->value());
             },
             'siteUrl' => function () {
-                $value = $this->siteUrl;
-
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
-                /** @var \Kirby\Cms\Page */
-                $model = $this->model();
 
-                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
-                    $value = $model->query(substr($value, 2, -2));
-                }
-
-                return $value ?? $kirby->site()->url();
+                return $this->tryResolveQuery($this->siteUrl, $kirby->site()->url());
             },
             'titleSeparator' => function () {
                 $value = $this->titleSeparator;
-
-                /** @var \Kirby\Cms\Page */
-                $model = $this->model();
-
-                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
-                    $value = $model->query(substr($value, 2, -2));
-                }
-
-                return $value;
+                return $this->tryResolveQuery($this->titleSeparator);
             },
             'descriptionFallback' => function () {
-                $value = $this->descriptionFallback;
-
-                /** @var \Kirby\Cms\Page */
-                $model = $this->model();
-
+                return $this->tryResolveQuery($this->descriptionFallback);
+            }
+        ],
+        'methods' => [
+            'tryResolveQuery' => function ($value, $fallback = null) {
                 if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
-                    $value = $model->query(substr($value, 2, -2));
+                    return $this->model()->query(substr($value, 2, -2));
                 }
 
-                return $value;
+                return $value ?? $fallback;
             }
         ]
     ]
