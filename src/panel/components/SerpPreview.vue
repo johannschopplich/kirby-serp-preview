@@ -54,6 +54,12 @@ const path = computed(() => {
   return withLeadingSlash(path);
 });
 
+const description = computed(
+  () =>
+    currentContent.value[descriptionContentKey.value] ||
+    descriptionFallback.value,
+);
+
 watch(
   () => panel.language.code,
   async () => {
@@ -120,10 +126,10 @@ function t(value) {
       </h3>
 
       <p
-        v-show="currentContent[descriptionContentKey] || descriptionFallback"
+        v-show="description"
         class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
       >
-        {{ currentContent[descriptionContentKey] || descriptionFallback }}
+        {{ description }}
       </p>
     </div>
 

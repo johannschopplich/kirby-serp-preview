@@ -18,56 +18,56 @@ return [
         ],
         'computed' => [
             'siteTitle' => function () {
-                $siteTitle = $this->siteTitle;
+                $value = $this->siteTitle;
 
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
                 /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
-                if (is_string($siteTitle) && str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
-                    $siteTitle = $model->query(substr($siteTitle, 2, -2));
+                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
+                    $value = $model->query(substr($value, 2, -2));
                 }
 
-                return $siteTitle ?? $kirby->site()->title()->value();
+                return $value ?? $kirby->site()->title()->value();
             },
             'siteUrl' => function () {
-                $siteUrl = $this->siteUrl;
+                $value = $this->siteUrl;
 
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
                 /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
-                if (is_string($siteUrl) && str_starts_with($siteUrl, '{{') && str_ends_with($siteUrl, '}}')) {
-                    $siteUrl = $model->query(substr($siteUrl, 2, -2));
+                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
+                    $value = $model->query(substr($value, 2, -2));
                 }
 
-                return $siteUrl ?? $kirby->site()->url();
+                return $value ?? $kirby->site()->url();
             },
             'titleSeparator' => function () {
-                $titleSeparator = $this->titleSeparator;
+                $value = $this->titleSeparator;
 
                 /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
-                if (is_string($titleSeparator) && str_starts_with($titleSeparator, '{{') && str_ends_with($titleSeparator, '}}')) {
-                    $titleSeparator = $model->query(substr($titleSeparator, 2, -2));
+                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
+                    $value = $model->query(substr($value, 2, -2));
                 }
 
-                return $titleSeparator;
+                return $value;
             },
             'descriptionFallback' => function () {
-                $descriptionFallback = $this->descriptionFallback;
+                $value = $this->descriptionFallback;
 
                 /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
-                if (is_string($descriptionFallback) && str_starts_with($descriptionFallback, '{{') && str_ends_with($descriptionFallback, '}}')) {
-                    $descriptionFallback = $model->query(substr($descriptionFallback, 2, -2));
+                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
+                    $value = $model->query(substr($value, 2, -2));
                 }
 
-                return $descriptionFallback;
+                return $value;
             }
         ]
     ]
