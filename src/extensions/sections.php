@@ -20,9 +20,9 @@ return [
             'siteTitle' => function () {
                 $siteTitle = $this->siteTitle;
 
-                /** @var \Kirby\Cms\App $kirby */
+                /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
-                /** @var \Kirby\Cms\Page $model */
+                /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
                 if (is_string($siteTitle) && str_starts_with($siteTitle, '{{') && str_ends_with($siteTitle, '}}')) {
@@ -34,9 +34,9 @@ return [
             'siteUrl' => function () {
                 $siteUrl = $this->siteUrl;
 
-                /** @var \Kirby\Cms\App $kirby */
+                /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
-                /** @var \Kirby\Cms\Page $model */
+                /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
                 if (is_string($siteUrl) && str_starts_with($siteUrl, '{{') && str_ends_with($siteUrl, '}}')) {
@@ -48,7 +48,7 @@ return [
             'titleSeparator' => function () {
                 $titleSeparator = $this->titleSeparator;
 
-                /** @var \Kirby\Cms\Page $model */
+                /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
                 if (is_string($titleSeparator) && str_starts_with($titleSeparator, '{{') && str_ends_with($titleSeparator, '}}')) {
@@ -60,7 +60,7 @@ return [
             'descriptionFallback' => function () {
                 $descriptionFallback = $this->descriptionFallback;
 
-                /** @var \Kirby\Cms\Page $page */
+                /** @var \Kirby\Cms\Page */
                 $model = $this->model();
 
                 if (is_string($descriptionFallback) && str_starts_with($descriptionFallback, '{{') && str_ends_with($descriptionFallback, '}}')) {
