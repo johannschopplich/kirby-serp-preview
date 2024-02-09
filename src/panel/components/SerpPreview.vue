@@ -18,6 +18,7 @@ const props = defineProps(propsDefinition);
 
 const panel = usePanel();
 const store = useStore();
+const { load } = useSection();
 const { getNonLocalizedPath } = useLocale();
 
 const label = ref();
@@ -61,16 +62,22 @@ const description = computed(
 );
 
 watch(
+  // Will be `null` in single language setups
   () => panel.language.code,
   async () => {
+    // Update the section props when the language changes to
+    // get a translated `descriptionFallback`
+    loadSectionProps();
+    // Update the path
     const data = await panel.api.get(panel.view.path);
     url.value = data.url;
   },
   { immediate: true },
 );
 
-(async () => {
-  const { load } = useSection();
+// loadSectionProps();
+
+async function loadSectionProps() {
   const response = await load({
     parent: props.parent,
     name: props.name,
@@ -86,7 +93,7 @@ watch(
   descriptionContentKey.value = response.descriptionContentKey;
   descriptionFallback.value = response.descriptionFallback;
   searchConsoleUrl.value = response.searchConsoleUrl;
-})();
+}
 
 function t(value) {
   if (!value || typeof value === "string") return value;
