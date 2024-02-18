@@ -8,7 +8,7 @@ Kirby Panel plugin for search engine result page previews.
 
 - Kirby 4+
 
-Kirby is not a free software. You can try it for free on your local machine but in order to run Kirby on a public server you must purchase a [valid license](https://getkirby.com/buy).
+Kirby is not free software. You can try it for free on your local machine but to run Kirby on a public server you must purchase a [valid license](https://getkirby.com/buy).
 
 ## Installation
 
@@ -59,7 +59,7 @@ The following options are available:
 | `faviconUrl`            | String  | `null`                     | The URL to the favicon.                                                                                                                                        |
 | `siteTitle`             | String  | `"{{ site.title.value }}"` | The site title.                                                                                                                                                |
 | `siteUrl`               | String  | `"{{ site.url }}"`         | The site URL.                                                                                                                                                  |
-| `titleSeparator`        | String  | `"-"`                      | The title separator between the page's and the site title. Only applies if no `titleContentKey` is set the target field value is empty. Also supports queries. |
+| `titleSeparator`        | String  | `"-"`                      | The title separator between the pages and the site title. This only applies if no `titleContentKey` is set and the target field value is empty. Also supports queries. |
 | `titleContentKey`       | String  | `null`                     | The content key for a custom title.                                                                                                                            |
 | `descriptionContentKey` | String  | `null`                     | The content key for the page's custom description.                                                                                                             |
 | `descriptionFallback`   | String  | `null`                     | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                        |
