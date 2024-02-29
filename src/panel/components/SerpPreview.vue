@@ -69,7 +69,7 @@ watch(
     // get a translated `descriptionFallback`
     loadSectionProps();
     // Update the path
-    const data = await panel.api.get(panel.view.path);
+    const data = await panel.api.get(panel.view.path, { select: "url" });
     url.value = data.url;
   },
   { immediate: true },
