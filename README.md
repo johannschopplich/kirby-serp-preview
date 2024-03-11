@@ -2,7 +2,7 @@
 
 # Kirby SERP Preview
 
-Kirby Panel plugin for search engine result page previews.
+A standalone search engine result page preview to include in any Kirby project. It allows you to preview how your page will look in the search results of Google and other search engines.
 
 ## Requirements
 
