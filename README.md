@@ -33,8 +33,8 @@ sections:
     siteTitle: "{{ site.title.value }}"
     siteUrl: "{{ site.url }}"
     # Optional field to override the computed title
-    titleContentKey: metaTitle
-    descriptionContentKey: metaDescription
+    titleContentKey: metatitle
+    descriptionContentKey: metadescription
     # Optional fallback if the field above is empty
     descriptionFallback: "{{ site.metaDescription.value }}"
 ```
