@@ -11,8 +11,8 @@ return [
             'siteTitle' => fn ($siteTitle = null) => $siteTitle,
             'siteUrl' => fn ($siteUrl = null) => $siteUrl,
             'titleSeparator' => fn ($titleSeparator = '–') => $titleSeparator,
-            'titleContentKey' => fn ($titleContentKey = null) => $titleContentKey,
-            'descriptionContentKey' => fn ($descriptionContentKey = null) => $descriptionContentKey,
+            'titleContentKey' => fn ($titleContentKey = null) => is_string($titleContentKey) ? strtolower($titleContentKey) : $titleContentKey,
+            'descriptionContentKey' => fn ($descriptionContentKey = null) => is_string($descriptionContentKey) ? strtolower($descriptionContentKey) : $descriptionContentKey,
             'descriptionFallback' => fn ($descriptionFallback = '') => $descriptionFallback,
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ],
