@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.4.2",
   "private": true,
-  "packageManager": "pnpm@8.15.1",
+  "packageManager": "pnpm@8.15.4",
   "scripts": {
     "dev": "kirbyup serve src/panel/index.js",
     "build": "kirbyup src/panel/index.js",
@@ -13,14 +13,14 @@
     "release": "pnpm run build && bumpp --all"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.4",
-    "autoprefixer": "^10.4.17",
-    "bumpp": "^9.3.0",
-    "eslint": "^8.56.0",
-    "kirbyup": "^3.1.3",
+    "@antfu/eslint-config": "^2.8.0",
+    "autoprefixer": "^10.4.18",
+    "bumpp": "^9.4.0",
+    "eslint": "^8.57.0",
+    "kirbyup": "^3.1.4",
     "kirbyuse": "^0.4.1",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.5.12",
     "tailwindcss": "^3.4.1",
     "ufo": "^1.4.0"
   }

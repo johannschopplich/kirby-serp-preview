@@ -6,7 +6,6 @@ return [
     'serp-preview' => [
         'props' => [
             'label' => fn ($label = null) => I18n::translate($label, $label),
-            'defaultLanguagePrefix' => fn ($defaultLanguagePrefix = null) => $defaultLanguagePrefix,
             'faviconUrl' => fn ($faviconUrl = null) => $faviconUrl,
             'siteTitle' => fn ($siteTitle = null) => $siteTitle,
             'siteUrl' => fn ($siteUrl = null) => $siteUrl,

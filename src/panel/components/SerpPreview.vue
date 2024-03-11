@@ -1,8 +1,7 @@
 <script>
-import { joinURL, withLeadingSlash } from "ufo";
+import { joinURL } from "ufo";
 import { computed, ref, usePanel, useSection, useStore, watch } from "kirbyuse";
 import { section } from "kirbyuse/props";
-import { useLocale } from "../composables/locale";
 
 const propsDefinition = {
   ...section,
@@ -19,10 +18,8 @@ const props = defineProps(propsDefinition);
 const panel = usePanel();
 const store = useStore();
 const { load } = useSection();
-const { getNonLocalizedPath } = useLocale();
 
 const label = ref();
-const defaultLanguagePrefix = ref();
 const faviconUrl = ref();
 const siteTitle = ref();
 const siteUrl = ref();
@@ -31,28 +28,13 @@ const titleSeparator = ref();
 const descriptionContentKey = ref();
 const descriptionFallback = ref();
 const searchConsoleUrl = ref();
-const url = ref("");
+const previewUrl = ref("");
 
 const currentContent = computed(() => store.getters["content/values"]());
 const path = computed(() => {
-  if (!url.value) return "";
-
-  if (!panel.multilang) {
-    const _url = new URL(url.value);
-    return _url.pathname;
-  }
-
-  let path = getNonLocalizedPath(url.value);
-
-  if (!defaultLanguagePrefix.value) {
-    if (!panel.language.default) {
-      path = joinURL(panel.language.code, path);
-    }
-  } else {
-    path = joinURL(panel.language.code, path);
-  }
-
-  return withLeadingSlash(path);
+  if (!previewUrl.value) return "";
+  const url = new URL(previewUrl.value);
+  return url.pathname;
 });
 
 const description = computed(
@@ -69,8 +51,8 @@ watch(
     // get a translated `descriptionFallback`
     loadSectionProps();
     // Update the path
-    const data = await panel.api.get(panel.view.path, { select: "url" });
-    url.value = data.url;
+    const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
+    previewUrl.value = data.previewUrl;
   },
   { immediate: true },
 );
@@ -84,7 +66,6 @@ async function loadSectionProps() {
   });
 
   label.value = t(response.label) || "SERP Preview";
-  defaultLanguagePrefix.value = response.defaultLanguagePrefix ?? true;
   faviconUrl.value = response.faviconUrl;
   siteTitle.value = response.siteTitle;
   siteUrl.value = response.siteUrl;
