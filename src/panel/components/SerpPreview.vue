@@ -46,10 +46,10 @@ const path = computed(() => {
 
   if (!defaultLanguagePrefix.value) {
     if (!panel.language.default) {
-      path = joinURL(panel.language.code, path);
+      path = joinURL(panel.language.url, path);
     }
   } else {
-    path = joinURL(panel.language.code, path);
+    path = joinURL(panel.language.url, path);
   }
 
   return withLeadingSlash(path);
