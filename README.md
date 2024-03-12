@@ -43,37 +43,30 @@ sections:
 
 ### Page Title
 
-By default, the SERP preview will render the title of the search engine result page preview by connecting the following values with a space:
+By default, the SERP preview will render the title of the search engine result page preview by joining the following values with a space:
 
-1️⃣ **Page Title** + 2️⃣ **Title Separator** (defaults to `–`) + 3️⃣ **Site Title**
+1️⃣ **Page Title**
+2️⃣ **Title Separator** (defaults to `–`)
+3️⃣ **Site Title**
 
 The `titleContentKey` section property allows you to define a custom content key for the page's title. If it is set and the field contains a value, it will override the computed title.
 
 ## Configuration
 
-The following options are available:
+Each configuration option is of type `string`. Some of them support Kirby queries. For example, you can use `{{ site.title.value }}` for the `siteTitle` option.
 
-| Option                  | Type   | Default                    | Description                                                                                                                                             |
-| ----------------------- | ------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `faviconUrl`            | String | `null`                     | The URL to the favicon.                                                                                                                                 |
-| `siteTitle`             | String | `"{{ site.title.value }}"` | The site title.                                                                                                                                         |
-| `siteUrl`               | String | `"{{ site.url }}"`         | The site URL.                                                                                                                                           |
-| `titleSeparator`        | String | `"-"`                      | The title separator between the current page title and the site title. Only applies if no `titleContentKey` is set and the target field value is empty. |
-| `titleContentKey`       | String | `null`                     | The content key for a custom title.                                                                                                                     |
-| `descriptionContentKey` | String | `null`                     | The content key for the page's custom description.                                                                                                      |
-| `descriptionFallback`   | String | `null`                     | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
-| `searchConsoleUrl`      | String | `null`                     | If provided, the section will display a link to the Google Search Console.                                                                              |
+The following table lists all available options:
 
-### Kirby Query Language
-
-Selected options support Kirby queries as values. For example, you can use `{{ site.title.value }}` to use the site's title.
-
-The following options support Kirby queries:
-
-- `siteTitle`
-- `siteUrl`
-- `titleSeparator`
-- `descriptionFallback`
+| Option                  | Default                    | Queryable | Description                                                                                                                                             |
+| ----------------------- | -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `faviconUrl`            | `null`                     | –         | The URL to the favicon.                                                                                                                                 |
+| `siteTitle`             | `"{{ site.title.value }}"` | ✅        | The site title.                                                                                                                                         |
+| `siteUrl`               | `"{{ site.url }}"`         | ✅        | The site URL.                                                                                                                                           |
+| `titleSeparator`        | `"-"`                      | ✅        | The title separator between the current page title and the site title. Only applies if no `titleContentKey` is set and the target field value is empty. |
+| `titleContentKey`       | `null`                     | –         | The content key for a custom title.                                                                                                                     |
+| `descriptionContentKey` | `null`                     | –         | The content key for the page's custom description.                                                                                                      |
+| `descriptionFallback`   | `null`                     | ✅        | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
+| `searchConsoleUrl`      | `null`                     | –         | If provided, the section will display a link to the Google Search Console.                                                                              |
 
 ## License
 
