@@ -26,7 +26,7 @@ return [
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
 
-                return $this->tryResolveQuery($this->siteUrl, $kirby->site()->url());
+                return $this->tryResolveQuery($this->siteUrl, $kirby->url());
             },
             'titleSeparator' => function () {
                 $value = $this->titleSeparator;
