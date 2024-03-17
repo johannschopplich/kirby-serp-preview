@@ -2,12 +2,13 @@
   "name": "johannschopplich/kirby-serp-preview",
   "description": "Kirby Panel plugin for search engine result page previews",
   "type": "kirby-plugin",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "keywords": [
-    "content",
-    "DeepL",
+    "google",
     "kirby",
-    "translation"
+    "search-engine",
+    "seo",
+    "serp"
   ],
   "license": "MIT",
   "homepage": "https://github.com/johannschopplich/kirby-serp-preview#readme",
