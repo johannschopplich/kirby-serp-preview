@@ -11,7 +11,7 @@ A standalone search engine result page preview to include in any Kirby project. 
 
 - Kirby 4+
 
-Kirby is not free software. However, you can try Kirby and the Starterkit on your local machine or on a test server as long as you need to make sure it is the right tool for your next project. … and when you’re convinced, [buy your license](https://getkirby.com/buy).
+Kirby is not free software. However, you can try Kirby and the Starterkit on your local machine or on a test server as long as you need to make sure it is the right tool for your next project. … and when you're convinced, [buy your license](https://getkirby.com/buy).
 
 ## Installation
 
@@ -38,7 +38,7 @@ sections:
     # Optional field to override the computed title
     titleContentKey: metaTitle
     # Optional default title as fallback if the field above is empty
-    defaultTitle: "{{ page.getMetaTitle.value }}"
+    defaultTitle: "{{ page.metaTitle.value }}"
     descriptionContentKey: metaDescription
     # Optional default description as fallback if the field above is empty
     defaultDescription: "{{ site.metaDescription.value }}"
@@ -48,16 +48,24 @@ sections:
 
 ### Page Title
 
+> [!TIP]
+>
+> **tl;dr** The title is computed in the following order:
+>
+> 1. `titleContentKey`
+> 2. `defaultTitle`
+> 3. Joining the page title, `titleSeparator`, and `siteTitle`.
+
 By default, the SERP preview will render the title of the search engine result page preview by joining the following values with a space:
 
 - 1️⃣ **Page Title**
 - 2️⃣ **Title Separator** (defaults to `–`)
 - 3️⃣ **Site Title**
 
-> [!TIP]
-> When `defaultTitle` is defined, it will be used as a fallback if the `titleContentKey` is empty and thus override the computed title.
+However, you can override the title generation above by using the following section properties:
 
-The `titleContentKey` section property allows you to define a custom content key for the page's title. If it is set and the field contains a value, it will override the computed title.
+- When `titleContentKey` is set and the corresponding field on the current page is not empty, it will be used as the title.
+- When `defaultTitle` is set, it will be used as the title if the `titleContentKey` is empty.
 
 ## Configuration
 
