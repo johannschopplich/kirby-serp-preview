@@ -2,6 +2,9 @@
 
 # Kirby SERP Preview
 
+> [!NOTE]
+> Used v0.x before? Upgrading is easy! Please read to the [migration guide](#migration) to learn more about the changes in v1.0.
+
 A standalone search engine result page preview to include in any Kirby project. It allows you to preview how your page will look in the search results of Google and other search engines.
 
 ## Requirements
@@ -64,7 +67,7 @@ The following table lists all available options:
 
 | Option                  | Default                    | Queryable | Description                                                                                                                                             |
 | ----------------------- | -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `faviconUrl`            | `null`                     | –         | The URL to the favicon.                                                                                                                                 |
+| `faviconUrl`            | `null`                     | ✅        | The URL to the favicon.                                                                                                                                 |
 | `siteTitle`             | `"{{ site.title.value }}"` | ✅        | The site title.                                                                                                                                         |
 | `siteUrl`               | `"{{ site.url }}"`         | ✅        | The site URL.                                                                                                                                           |
 | `titleSeparator`        | `"-"`                      | ✅        | The title separator between the current page title and the site title. Only applies if no `titleContentKey` is set and the target field value is empty. |
@@ -73,6 +76,14 @@ The following table lists all available options:
 | `descriptionContentKey` | `null`                     | –         | The content key for the page's custom description.                                                                                                      |
 | `defaultDescription`    | `null`                     | ✅        | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
 | `searchConsoleUrl`      | `null`                     | –         | If provided, the section will display a link to the Google Search Console.                                                                              |
+
+## Migration
+
+Each major release might introduce breaking changes, new features, or deprecate old ones. The migration guide will help you to understand what has changed and how to adapt your project to the new version.
+
+### From v0.x to v1.0
+
+- The `descriptionFallback` section property has been renamed to `defaultDescription`. Please update your blueprints accordingly.
 
 ## License
 

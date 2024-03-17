@@ -17,6 +17,9 @@ return [
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ],
         'computed' => [
+            'faviconUrl' => function () {
+                return $this->tryResolveQuery($this->faviconUrl);
+            },
             'siteTitle' => function () {
                 /** @var \Kirby\Cms\App */
                 $kirby = $this->kirby();
