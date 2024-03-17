@@ -12,7 +12,8 @@ return [
             'titleSeparator' => fn ($titleSeparator = '–') => $titleSeparator,
             'titleContentKey' => fn ($titleContentKey = null) => is_string($titleContentKey) ? strtolower($titleContentKey) : $titleContentKey,
             'descriptionContentKey' => fn ($descriptionContentKey = null) => is_string($descriptionContentKey) ? strtolower($descriptionContentKey) : $descriptionContentKey,
-            'descriptionFallback' => fn ($descriptionFallback = '') => $descriptionFallback,
+            'defaultTitle' => fn ($defaultTitle = '') => $defaultTitle,
+            'defaultDescription' => fn ($defaultDescription = '') => $defaultDescription,
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ],
         'computed' => [
@@ -29,17 +30,23 @@ return [
                 return $this->tryResolveQuery($this->siteUrl, $kirby->url());
             },
             'titleSeparator' => function () {
-                $value = $this->titleSeparator;
                 return $this->tryResolveQuery($this->titleSeparator);
             },
-            'descriptionFallback' => function () {
-                return $this->tryResolveQuery($this->descriptionFallback);
+            'defaultTitle' => function () {
+                return $this->tryResolveQuery($this->defaultTitle);
+            },
+            'defaultDescription' => function () {
+                return $this->tryResolveQuery($this->defaultDescription) ?: $this->tryResolveQuery($this->descriptionFallback);
             }
         ],
         'methods' => [
             'tryResolveQuery' => function ($value, $fallback = null) {
-                if (is_string($value) && str_starts_with($value, '{{') && str_ends_with($value, '}}')) {
-                    return $this->model()->query(substr($value, 2, -2));
+                if (is_string($value)) {
+                    // Replace all matches of KQL parts with the query results
+                    $value = preg_replace_callback('!\{\{(.+?)\}\}!', function ($matches) {
+                        $result = $this->model()->query(trim($matches[1]));
+                        return $result ?? '';
+                    }, $value);
                 }
 
                 return $value ?? $fallback;

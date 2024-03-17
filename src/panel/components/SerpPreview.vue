@@ -21,12 +21,13 @@ const { load } = useSection();
 
 const label = ref();
 const faviconUrl = ref();
+const defaultTitle = ref();
 const siteTitle = ref();
 const siteUrl = ref();
 const titleContentKey = ref();
 const titleSeparator = ref();
 const descriptionContentKey = ref();
-const descriptionFallback = ref();
+const defaultDescription = ref();
 const searchConsoleUrl = ref();
 const previewUrl = ref("");
 
@@ -40,7 +41,7 @@ const path = computed(() => {
 const description = computed(
   () =>
     currentContent.value[descriptionContentKey.value] ||
-    descriptionFallback.value,
+    defaultDescription.value,
 );
 
 watch(
@@ -48,7 +49,7 @@ watch(
   () => panel.language.code,
   async () => {
     // Update the section props when the language changes to
-    // get a translated `descriptionFallback`
+    // get a translated `defaultDescription`
     loadSectionProps();
     // Update the path
     const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
@@ -72,7 +73,8 @@ async function loadSectionProps() {
   titleSeparator.value = response.titleSeparator;
   titleContentKey.value = response.titleContentKey;
   descriptionContentKey.value = response.descriptionContentKey;
-  descriptionFallback.value = response.descriptionFallback;
+  defaultTitle.value = response.defaultTitle;
+  defaultDescription.value = response.defaultDescription;
   searchConsoleUrl.value = response.searchConsoleUrl;
 }
 
@@ -109,6 +111,7 @@ function t(value) {
       <h3 class="ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
         {{
           currentContent[titleContentKey] ||
+          defaultTitle ||
           [panel.view.title, titleSeparator, siteTitle].join(" ")
         }}
       </h3>
