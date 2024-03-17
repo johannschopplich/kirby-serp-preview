@@ -30,7 +30,6 @@ return [
                 return $this->tryResolveQuery($this->siteUrl, $kirby->url());
             },
             'titleSeparator' => function () {
-                $value = $this->titleSeparator;
                 return $this->tryResolveQuery($this->titleSeparator);
             },
             'defaultTitle' => function () {
@@ -38,18 +37,15 @@ return [
             },
             'defaultDescription' => function () {
                 return $this->tryResolveQuery($this->defaultDescription) ?: $this->tryResolveQuery($this->descriptionFallback);
-            },
-
+            }
         ],
         'methods' => [
             'tryResolveQuery' => function ($value, $fallback = null) {
                 if (is_string($value)) {
-                    $pattern = '/{{(.+?)}}/';
-
                     // Replace all matches of KQL parts with the query results
-                    $value = preg_replace_callback($pattern, function ($matches) {
+                    $value = preg_replace_callback('!\{\{(.+?)\}\}!', function ($matches) {
                         $result = $this->model()->query(trim($matches[1]));
-                        return $result !== null ? $result : '';
+                        return $result ?? '';
                     }, $value);
                 }
 
