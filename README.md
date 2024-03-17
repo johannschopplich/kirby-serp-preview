@@ -47,11 +47,12 @@ sections:
 
 By default, the SERP preview will render the title of the search engine result page preview by joining the following values with a space:
 
-1️⃣ **Page Title**
-2️⃣ **Title Separator** (defaults to `–`)
-3️⃣ **Site Title**
+- 1️⃣ **Page Title**
+- 2️⃣ **Title Separator** (defaults to `–`)
+- 3️⃣ **Site Title**
 
-When `defaultTitle` is defined
+> [!TIP]
+> When `defaultTitle` is defined, it will be used as a fallback if the `titleContentKey` is empty and thus override the computed title.
 
 The `titleContentKey` section property allows you to define a custom content key for the page's title. If it is set and the field contains a value, it will override the computed title.
 
@@ -68,9 +69,9 @@ The following table lists all available options:
 | `siteUrl`               | `"{{ site.url }}"`         | ✅        | The site URL.                                                                                                                                           |
 | `titleSeparator`        | `"-"`                      | ✅        | The title separator between the current page title and the site title. Only applies if no `titleContentKey` is set and the target field value is empty. |
 | `titleContentKey`       | `null`                     | –         | The content key for a custom title.                                                                                                                     |
-| `defaultTitle`          | `null`                     | ✅        | Plain text or Kirby query to use as a fallback instead of 1️⃣2️⃣3️⃣ if the `titleContentKey` is empty.                                                    |
+| `defaultTitle`          | `null`                     | ✅        | Plain text or Kirby query to use as a fallback instead of 1️⃣2️⃣3️⃣ if the `titleContentKey` is empty.                                                     |
 | `descriptionContentKey` | `null`                     | –         | The content key for the page's custom description.                                                                                                      |
-| `defaultDescription`   | `null`                      | ✅        | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
+| `defaultDescription`    | `null`                     | ✅        | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
 | `searchConsoleUrl`      | `null`                     | –         | If provided, the section will display a link to the Google Search Console.                                                                              |
 
 ## License

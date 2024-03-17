@@ -21,11 +21,11 @@ const { load } = useSection();
 
 const label = ref();
 const faviconUrl = ref();
-const defaultTitle = ref();
 const siteTitle = ref();
 const siteUrl = ref();
-const titleContentKey = ref();
 const titleSeparator = ref();
+const titleContentKey = ref();
+const defaultTitle = ref();
 const descriptionContentKey = ref();
 const defaultDescription = ref();
 const searchConsoleUrl = ref();
@@ -40,8 +40,9 @@ const path = computed(() => {
 
 const description = computed(
   () =>
-    currentContent.value[descriptionContentKey.value] ||
-    defaultDescription.value,
+    (descriptionContentKey.value
+      ? currentContent.value[descriptionContentKey.value]
+      : undefined) || defaultDescription.value,
 );
 
 watch(
@@ -49,7 +50,7 @@ watch(
   () => panel.language.code,
   async () => {
     // Update the section props when the language changes to
-    // get a translated `defaultDescription`
+    // get a translated `defaultTitle` and `defaultDescription`
     loadSectionProps();
     // Update the path
     const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
@@ -72,8 +73,8 @@ async function loadSectionProps() {
   siteUrl.value = response.siteUrl;
   titleSeparator.value = response.titleSeparator;
   titleContentKey.value = response.titleContentKey;
-  descriptionContentKey.value = response.descriptionContentKey;
   defaultTitle.value = response.defaultTitle;
+  descriptionContentKey.value = response.descriptionContentKey;
   defaultDescription.value = response.defaultDescription;
   searchConsoleUrl.value = response.searchConsoleUrl;
 }

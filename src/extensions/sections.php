@@ -11,8 +11,8 @@ return [
             'siteUrl' => fn ($siteUrl = null) => $siteUrl,
             'titleSeparator' => fn ($titleSeparator = '–') => $titleSeparator,
             'titleContentKey' => fn ($titleContentKey = null) => is_string($titleContentKey) ? strtolower($titleContentKey) : $titleContentKey,
-            'descriptionContentKey' => fn ($descriptionContentKey = null) => is_string($descriptionContentKey) ? strtolower($descriptionContentKey) : $descriptionContentKey,
             'defaultTitle' => fn ($defaultTitle = '') => $defaultTitle,
+            'descriptionContentKey' => fn ($descriptionContentKey = null) => is_string($descriptionContentKey) ? strtolower($descriptionContentKey) : $descriptionContentKey,
             'defaultDescription' => fn ($defaultDescription = '') => $defaultDescription,
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ],
@@ -36,7 +36,7 @@ return [
                 return $this->tryResolveQuery($this->defaultTitle);
             },
             'defaultDescription' => function () {
-                return $this->tryResolveQuery($this->defaultDescription) ?: $this->tryResolveQuery($this->descriptionFallback);
+                return $this->tryResolveQuery($this->defaultDescription);
             }
         ],
         'methods' => [
