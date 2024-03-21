@@ -67,7 +67,8 @@ async function loadSectionProps() {
     name: props.name,
   });
 
-  label.value = t(response.label) || "SERP Preview";
+  label.value =
+    t(response.label) || panel.t("johannschopplich.serp-preview.label");
   faviconUrl.value = response.faviconUrl;
   siteTitle.value = response.siteTitle;
   siteUrl.value = response.siteUrl;
