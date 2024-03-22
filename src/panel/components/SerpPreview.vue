@@ -1,6 +1,15 @@
 <script>
 import { joinURL } from "ufo";
-import { computed, ref, usePanel, useSection, useStore, watch } from "kirbyuse";
+import {
+  computed,
+  ref,
+  useApi,
+  usePanel,
+  useSection,
+  useStore,
+  watch,
+} from "kirbyuse";
+import pThrottle from "p-throttle";
 import { section } from "kirbyuse/props";
 
 const propsDefinition = {
@@ -16,6 +25,7 @@ export default {
 const props = defineProps(propsDefinition);
 
 const panel = usePanel();
+const api = useApi();
 const store = useStore();
 const { load } = useSection();
 
@@ -29,7 +39,12 @@ const defaultTitle = ref();
 const descriptionContentKey = ref();
 const defaultDescription = ref();
 const searchConsoleUrl = ref();
+const config = ref();
+
+// Local state
 const previewUrl = ref("");
+const titleProxy = ref("");
+const descriptionProxy = ref("");
 
 const currentContent = computed(() => store.getters["content/values"]());
 const path = computed(() => {
@@ -38,6 +53,12 @@ const path = computed(() => {
   return url.pathname;
 });
 
+const title = computed(
+  () =>
+    currentContent.value[titleContentKey.value] ||
+    defaultTitle.value ||
+    [panel.view.title, titleSeparator.value, siteTitle.value].join(" "),
+);
 const description = computed(
   () =>
     (descriptionContentKey.value
@@ -59,6 +80,29 @@ watch(
   { immediate: true },
 );
 
+const throttle = pThrottle({
+  limit: 1,
+  interval: 250,
+});
+const throttledGetParsedTitle = throttle(async (value) => {
+  titleProxy.value = await getParsedProperty("title", value);
+});
+const throttledGetParsedDescription = throttle(async (value) => {
+  descriptionProxy.value = await getParsedProperty("description", value);
+});
+
+watch(title, (value) => {
+  if (config.value?.parsers?.title) {
+    throttledGetParsedTitle(value);
+  }
+});
+
+watch(description, (value) => {
+  if (config.value?.parsers?.description) {
+    throttledGetParsedDescription(value);
+  }
+});
+
 // loadSectionProps();
 
 async function loadSectionProps() {
@@ -78,11 +122,27 @@ async function loadSectionProps() {
   descriptionContentKey.value = response.descriptionContentKey;
   defaultDescription.value = response.defaultDescription;
   searchConsoleUrl.value = response.searchConsoleUrl;
+  config.value = response.config;
 }
 
 function t(value) {
   if (!value || typeof value === "string") return value;
   return value[panel.translation.code] ?? Object.values(value)[0];
+}
+
+async function getParsedProperty(prop, value) {
+  const pageId =
+    panel.view.path === "site"
+      ? undefined
+      : // Replace leading `pages/`
+        panel.view.path.slice(6).replaceAll("+", "/");
+
+  const { text } = await api.post(`__serp-preview__/parse/${prop}`, {
+    pageId,
+    value,
+  });
+
+  return text;
 }
 </script>
 
@@ -111,18 +171,14 @@ function t(value) {
       </div>
 
       <h3 class="ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
-        {{
-          currentContent[titleContentKey] ||
-          defaultTitle ||
-          [panel.view.title, titleSeparator, siteTitle].join(" ")
-        }}
+        {{ titleProxy || title }}
       </h3>
 
       <p
         v-show="description"
         class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
       >
-        {{ description }}
+        {{ descriptionProxy || description }}
       </p>
     </div>
 

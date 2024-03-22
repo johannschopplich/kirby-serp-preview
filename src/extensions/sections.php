@@ -17,6 +17,25 @@ return [
             'searchConsoleUrl' => fn ($searchConsoleUrl = null) => $searchConsoleUrl
         ],
         'computed' => [
+            'config' => function () {
+                /** @var \Kirby\Cms\App */
+                $kirby = $this->kirby();
+                $config = $kirby->option('johannschopplich.serp-preview', []);
+
+                $defaultConfig = [
+                    'parsers' => []
+                ];
+
+                // Merge user configuration with defaults
+                $config = array_replace_recursive($defaultConfig, $config);
+
+                // Uncheck all all resolver but check if they contain a function
+                foreach (['title', 'description'] as $key) {
+                    $config['parsers'][$key] = isset($config['parsers'][$key]) && is_callable($config['parsers'][$key]);
+                }
+
+                return $config;
+            },
             'faviconUrl' => function () {
                 return $this->tryResolveQuery($this->faviconUrl);
             },
