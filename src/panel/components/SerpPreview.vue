@@ -131,11 +131,10 @@ function t(value) {
 }
 
 async function getParsedProperty(prop, value) {
-  const pageId =
-    panel.view.path === "site"
-      ? undefined
-      : // Replace leading `pages/`
-        panel.view.path.slice(6).replaceAll("+", "/");
+  // Replace leading `pages/`
+  const pageId = panel.view.path.startsWith("pages/")
+    ? panel.view.path.slice(6).replaceAll("+", "/")
+    : undefined;
 
   const { text } = await api.post(`__serp-preview__/parse/${prop}`, {
     pageId,
