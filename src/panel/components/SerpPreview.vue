@@ -71,7 +71,7 @@ watch(
   () => panel.language.code,
   async () => {
     // Update the section props when the language changes to
-    // get a translated `defaultTitle` and `defaultDescription`
+    // re-evaluate all queries
     loadSectionProps();
     // Update the path
     const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
