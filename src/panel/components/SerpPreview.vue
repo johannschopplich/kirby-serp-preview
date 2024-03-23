@@ -69,15 +69,11 @@ const description = computed(
 watch(
   // Will be `null` in single language setups
   () => panel.language.code,
-  async () => {
+  () => {
     // Update the section props when the language changes to
     // re-evaluate all queries
-    loadSectionProps();
-    // Update the path
-    const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
-    previewUrl.value = data.previewUrl;
+    updateSectionData();
   },
-  { immediate: true },
 );
 
 const throttle = pThrottle({
@@ -103,26 +99,34 @@ watch(description, (value) => {
   }
 });
 
-// loadSectionProps();
+updateSectionData(true);
 
-async function loadSectionProps() {
+async function updateSectionData(isInitializing = false) {
   const response = await load({
     parent: props.parent,
     name: props.name,
   });
 
-  label.value =
-    t(response.label) || panel.t("johannschopplich.serp-preview.label");
+  // Set non-query data only once
+  if (isInitializing) {
+    label.value =
+      t(response.label) || panel.t("johannschopplich.serp-preview.label");
+    titleContentKey.value = response.titleContentKey;
+    descriptionContentKey.value = response.descriptionContentKey;
+    config.value = response.config;
+    searchConsoleUrl.value = response.searchConsoleUrl;
+  }
+
   faviconUrl.value = response.faviconUrl;
   siteTitle.value = response.siteTitle;
   siteUrl.value = response.siteUrl;
   titleSeparator.value = response.titleSeparator;
-  titleContentKey.value = response.titleContentKey;
   defaultTitle.value = response.defaultTitle;
-  descriptionContentKey.value = response.descriptionContentKey;
   defaultDescription.value = response.defaultDescription;
-  searchConsoleUrl.value = response.searchConsoleUrl;
-  config.value = response.config;
+
+  // Update the path
+  const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
+  previewUrl.value = data.previewUrl;
 }
 
 function t(value) {
