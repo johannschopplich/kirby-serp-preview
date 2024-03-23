@@ -107,7 +107,8 @@ async function updateSectionData(isInitializing = false) {
     name: props.name,
   });
 
-  // Set non-query data only once
+  // Set values once that don't need to be re-evaluated on the server
+  // when the language changes
   if (isInitializing) {
     label.value =
       t(response.label) || panel.t("johannschopplich.serp-preview.label");
