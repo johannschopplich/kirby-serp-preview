@@ -84,22 +84,22 @@ const throttle = pThrottle({
   limit: 1,
   interval: 250,
 });
-const throttledGetParsedTitle = throttle(async (value) => {
-  titleProxy.value = await getParsedProperty("title", value);
+const throttledFormatTitle = throttle(async (value) => {
+  titleProxy.value = await formatProperty("title", value);
 });
-const throttledGetParsedDescription = throttle(async (value) => {
-  descriptionProxy.value = await getParsedProperty("description", value);
+const throttledFormatDescription = throttle(async (value) => {
+  descriptionProxy.value = await formatProperty("description", value);
 });
 
 watch(title, (value) => {
-  if (config.value?.parsers?.title) {
-    throttledGetParsedTitle(value);
+  if (config.value?.formatters?.title) {
+    throttledFormatTitle(value);
   }
 });
 
 watch(description, (value) => {
-  if (config.value?.parsers?.description) {
-    throttledGetParsedDescription(value);
+  if (config.value?.formatters?.description) {
+    throttledFormatDescription(value);
   }
 });
 
@@ -130,13 +130,13 @@ function t(value) {
   return value[panel.translation.code] ?? Object.values(value)[0];
 }
 
-async function getParsedProperty(prop, value) {
+async function formatProperty(prop, value) {
   // Replace leading `pages/`
   const pageId = panel.view.path.startsWith("pages/")
     ? panel.view.path.slice(6).replaceAll("+", "/")
     : undefined;
 
-  const { text } = await api.post(`__serp-preview__/parse/${prop}`, {
+  const { text } = await api.post(`__serp-preview__/format/${prop}`, {
     pageId,
     value,
   });

@@ -7,12 +7,12 @@ use Kirby\Exception\NotFoundException;
 return [
     'routes' => fn (App $kirby) => [
         [
-            'pattern' => '__serp-preview__/parse/(:alphanum)',
+            'pattern' => '__serp-preview__/format/(:alphanum)',
             'method' => 'POST',
             'action' => function (string $property) use ($kirby) {
                 $request = $kirby->request();
-                $value = $request->get('value');
                 $pageId = $request->get('pageId', $kirby->site()->homePageId());
+                $value = $request->get('value', '');
 
                 if (!in_array($property, ['title', 'description'], true)) {
                     throw new InvalidArgumentException('Invalid key');
@@ -24,13 +24,13 @@ return [
                     throw new NotFoundException('Page not found');
                 }
 
-                $parser = $kirby->option('johannschopplich.serp-preview.parsers.' . $property);
+                $formatter = $kirby->option('johannschopplich.serp-preview.formatters.' . $property);
 
-                if (!is_callable($parser)) {
-                    throw new NotFoundException('Parser not found');
+                if (!is_callable($formatter)) {
+                    throw new NotFoundException('Formatter not found');
                 }
 
-                $text = $parser($value, $page);
+                $text = $formatter($value, $page);
 
                 return [
                     'text' => $text
