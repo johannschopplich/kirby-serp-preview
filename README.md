@@ -97,4 +97,4 @@ Each major release might introduce breaking changes, new features, or deprecate 
 
 [MIT](./LICENSE) License © 2023-PRESENT [Johann Schopplich](https://github.com/johannschopplich)
 
-[MIT](./LICENSE) License © 2023-PRESENT [Dennis Baum](https://github.com/dennisbaum)
+[MIT](./LICENSE) License © 2023 [Dennis Baum](https://github.com/dennisbaum)
