@@ -1,5 +1,4 @@
 <script>
-import { joinURL } from "ufo";
 import {
   computed,
   ref,
@@ -9,8 +8,9 @@ import {
   useStore,
   watch,
 } from "kirbyuse";
-import pThrottle from "p-throttle";
 import { section } from "kirbyuse/props";
+import pThrottle from "p-throttle";
+import { joinURL } from "ufo";
 
 const propsDefinition = {
   ...section,
