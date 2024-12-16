@@ -150,14 +150,14 @@ async function formatProperty(prop, value) {
 </script>
 
 <template>
-  <k-section :label="label">
+  <k-section :label="label" class="k-serp-section">
     <div
       class="ksp-overflow-hidden ksp-rounded-[var(--input-rounded)] ksp-bg-[var(--input-color-back)] ksp-p-4"
     >
       <div class="ksp-mb-2 ksp-flex ksp-items-center ksp-gap-3">
         <figure
           v-if="faviconUrl"
-          class="ksp-inline-flex ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-items-center ksp-justify-center ksp-rounded-full ksp-border ksp-border-solid ksp-border-[#ecedef] ksp-bg-[#f1f3f4]"
+          class="ksp-inline-flex ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-items-center ksp-justify-center ksp-rounded-full ksp-border ksp-border-solid ksp-border-[var(--serp-favicon-border)] ksp-bg-[var(--serp-favicon-background)]"
         >
           <img
             class="ksp-block ksp-h-[18px] ksp-w-[18px]"
@@ -166,20 +166,25 @@ async function formatProperty(prop, value) {
           />
         </figure>
         <div class="ksp-flex ksp-flex-col">
-          <span class="ksp-text-sm ksp-text-[#4d5156]">{{ siteTitle }}</span>
-          <span class="ksp-line-clamp-1 ksp-text-xs ksp-text-[#4d5156]">{{
-            joinURL(siteUrl, path)
+          <span class="ksp-text-sm ksp-text-[var(--serp-color-text)]">{{
+            siteTitle
           }}</span>
+          <span
+            class="ksp-line-clamp-1 ksp-text-xs ksp-text-[var(--serp-color-text)]"
+            >{{ joinURL(siteUrl, path) }}</span
+          >
         </div>
       </div>
 
-      <h3 class="ksp-line-clamp-1 ksp-text-xl ksp-text-[#1a0dab]">
+      <h3
+        class="ksp-line-clamp-1 ksp-text-xl ksp-text-[var(--serp-color-title)]"
+      >
         {{ titleProxy || title }}
       </h3>
 
       <p
         v-show="description"
-        class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[#4d5156]"
+        class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[var(--serp-color-text)]"
       >
         {{ descriptionProxy || description }}
       </p>
@@ -192,3 +197,12 @@ async function formatProperty(prop, value) {
     </k-button-group>
   </k-section>
 </template>
+
+<style scoped>
+.k-serp-section {
+  --serp-favicon-background: light-dark(#f1f3f4, #fff);
+  --serp-favicon-border: light-dark(#ecedef, #9aa0a6);
+  --serp-color-title: light-dark(#1a0dab, #99c3ff);
+  --serp-color-text: light-dark(#4d5156, #bfbfbf);
+}
+</style>

@@ -1,15 +1,15 @@
-![Kirby Search Engine Result Page Preview](./.github/kirby-serp-preview.png)
+![Kirby Search Engine Result Page Preview screenshot](./.github/kirby-serp-preview.png)
 
 # Kirby SERP Preview
 
-> [!NOTE]
-> Used v0.x before? Upgrading is easy! Please read to the [migration guide](#migration) to learn more about the changes in v1.0.
-
 A standalone search engine result page preview to include in any Kirby project. It allows you to preview how your page will look in the search results of Google and other search engines.
+
+> [!TIP]
+> New: Ready for Kirby 5! The plugin adapts to the Panel theme and uses Google's dark mode colors if the theme is set to dark.
 
 ## Requirements
 
-- Kirby 4+
+- Kirby 4 or Kirby 5
 
 Kirby is not free software. However, you can try Kirby and the Starterkit on your local machine or on a test server as long as you need to make sure it is the right tool for your next project. … and when you're convinced, [buy your license](https://getkirby.com/buy).
 
@@ -84,14 +84,6 @@ The following table lists all available options:
 | `descriptionContentKey` | `null`                     | –         | The content key for the page's custom description.                                                                                                      |
 | `defaultDescription`    | `null`                     | ✅        | Plain text or Kirby query to use as a fallback if the `descriptionContentKey` is empty.                                                                 |
 | `searchConsoleUrl`      | `null`                     | –         | If provided, the section will display a link to the Google Search Console.                                                                              |
-
-## Migration
-
-Each major release might introduce breaking changes, new features, or deprecate old ones. The migration guide will help you to understand what has changed and how to adapt your project to the new version.
-
-### From v0.x to v1.0
-
-- The `descriptionFallback` section property has been renamed to `defaultDescription`. Please update your blueprints accordingly.
 
 ## License
 
