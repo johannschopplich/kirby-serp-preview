@@ -3,9 +3,9 @@ import {
   computed,
   ref,
   useApi,
+  useContent,
   usePanel,
   useSection,
-  useStore,
   watch,
 } from "kirbyuse";
 import { section } from "kirbyuse/props";
@@ -26,7 +26,6 @@ const props = defineProps(propsDefinition);
 
 const panel = usePanel();
 const api = useApi();
-const store = useStore();
 const { load } = useSection();
 
 const label = ref();
@@ -46,7 +45,7 @@ const previewUrl = ref("");
 const titleProxy = ref("");
 const descriptionProxy = ref("");
 
-const currentContent = computed(() => store.getters["content/values"]());
+const { currentContent } = useContent();
 const path = computed(() => {
   if (!previewUrl.value) return "";
   const url = new URL(previewUrl.value);

@@ -9,5 +9,8 @@ return [
     ],
     'fr' => [
         'johannschopplich.serp-preview.label' => 'Aperçu SERP'
+    ],
+    'nl' => [
+        'johannschopplich.serp-preview.label' => 'SERP-voorbeeld'
     ]
 ];
