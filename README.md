@@ -34,7 +34,7 @@ sections:
   serp-preview:
     type: serp-preview
     siteTitle: "{{ site.title.value }}"
-    siteUrl: "{{ site.url }}"
+    siteUrl: "{{ kirby.url }}"
     # Optional field to override the computed title
     titleContentKey: metaTitle
     # Optional default title as fallback if the field above is empty
@@ -77,7 +77,7 @@ The following table lists all available options:
 | ----------------------- | -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `faviconUrl`            | `null`                     | ✅        | The URL to the favicon.                                                                                                                                 |
 | `siteTitle`             | `"{{ site.title.value }}"` | ✅        | The site title.                                                                                                                                         |
-| `siteUrl`               | `"{{ site.url }}"`         | ✅        | The site URL.                                                                                                                                           |
+| `siteUrl`               | `"{{ kirby.url }}"`        | ✅        | The site URL.                                                                                                                                           |
 | `titleSeparator`        | `"-"`                      | ✅        | The title separator between the current page title and the site title. Only applies if no `titleContentKey` is set and the target field value is empty. |
 | `titleContentKey`       | `null`                     | –         | The content key for a custom title.                                                                                                                     |
 | `defaultTitle`          | `null`                     | ✅        | Plain text or Kirby query to use as a fallback instead of 1️⃣2️⃣3️⃣ if the `titleContentKey` is empty.                                                     |
