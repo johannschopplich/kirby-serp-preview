@@ -27,7 +27,7 @@ return [
                 $formatter = $kirby->option('johannschopplich.serp-preview.formatters.' . $property);
 
                 if (!is_callable($formatter)) {
-                    throw new NotFoundException('Formatter not found');
+                    throw new NotFoundException('Invalid formatter "' . $property . '"');
                 }
 
                 $text = $formatter($value, $page);
