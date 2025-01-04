@@ -4,6 +4,7 @@ import {
   ref,
   useApi,
   useContent,
+  useI18n,
   usePanel,
   useSection,
   watch,
@@ -26,6 +27,7 @@ const props = defineProps(propsDefinition);
 
 const panel = usePanel();
 const api = useApi();
+const { t } = useI18n();
 const { load } = useSection();
 
 const label = ref();
@@ -127,11 +129,6 @@ async function updateSectionData(isInitializing = false) {
   // Update the path
   const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
   previewUrl.value = data.previewUrl;
-}
-
-function t(value) {
-  if (!value || typeof value === "string") return value;
-  return value[panel.translation.code] ?? Object.values(value)[0];
 }
 
 async function formatProperty(prop, value) {

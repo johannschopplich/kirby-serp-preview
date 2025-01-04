@@ -24,8 +24,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@types/node@22.10.2)(jiti@2.4.1)(rollup@4.28.1)(yaml@2.6.1)
       kirbyuse:
-        specifier: ^0.9.2
-        version: 0.9.2
+        specifier: ^0.10.0
+        version: 0.10.0
       p-throttle:
         specifier: ^6.2.0
         version: 6.2.0
@@ -1616,8 +1616,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  kirbyuse@0.9.2:
-    resolution: {integrity: sha512-r5Rhtgx3QEaeTPo1olrZyKJ/TKH12R/kiSLufwMt+BsJFMqL1jK64wASwFsh2yEOGXbfk3cvDrytJnRkNgrk1w==}
+  kirbyuse@0.10.0:
+    resolution: {integrity: sha512-9FBj+keybvLCOsjJXZkDq22Bn1NXaBXx3qV0FoSd79a1JQ0pQrxHUKALydFNSIeZEJD3AoVpoiM+7XE5muX1BA==}
 
   kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
@@ -4218,7 +4218,7 @@ snapshots:
       - tsx
       - yaml
 
-  kirbyuse@0.9.2:
+  kirbyuse@0.10.0:
     dependencies:
       vue: 2.7.16
 
