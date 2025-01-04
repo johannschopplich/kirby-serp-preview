@@ -23,7 +23,6 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.17",
-    "throttleit": "^2.1.0",
     "ufo": "^1.5.4",
     "zx": "^8.3.0"
   }
