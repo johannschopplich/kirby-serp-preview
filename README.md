@@ -27,7 +27,7 @@ Download and copy this repository to `/site/plugins/kirby-serp-preview`.
 
 ## Getting Started
 
-Create a new section in one of your blueprints:
+Create a new section in one of your blueprints. The following example includes all available options with their respective default values:
 
 ```yml
 sections:
