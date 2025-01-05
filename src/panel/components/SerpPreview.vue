@@ -137,12 +137,12 @@ async function formatProperty(prop, value) {
     ? panel.view.path.slice(6).replaceAll("+", "/")
     : undefined;
 
-  const { text } = await api.post(`__serp-preview__/format/${prop}`, {
+  const { data } = await api.post(`__serp-preview__/format/${prop}`, {
     pageId,
     value,
   });
 
-  return text;
+  return data.text;
 }
 </script>
 

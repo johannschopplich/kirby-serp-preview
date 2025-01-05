@@ -33,7 +33,11 @@ return [
                 $text = $formatter($value, $page);
 
                 return [
-                    'text' => $text
+                    'status' => 'ok',
+                    'code' => 200,
+                    'data' => [
+                        'text' => $text
+                    ]
                 ];
             }
         ]
