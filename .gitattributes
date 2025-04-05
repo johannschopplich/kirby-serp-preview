@@ -24,6 +24,7 @@ eslint.config.mjs export-ignore
 index.dev.mjs export-ignore
 package.json export-ignore
 pnpm-lock.yaml export-ignore
+pnpm-workspace.yaml export-ignore
 
 # Tests
 .codecov.yml export-ignore
