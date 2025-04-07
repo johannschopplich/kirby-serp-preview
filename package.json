@@ -17,7 +17,7 @@
     "autoprefixer": "^10.4.21",
     "bumpp": "^10.1.0",
     "eslint": "^9.24.0",
-    "kirbyup": "^3.2.1",
+    "kirbyup": "^3.3.0",
     "kirbyuse": "^0.11.3",
     "p-throttle": "^7.0.0",
     "prettier": "^3.5.3",
