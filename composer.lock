@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b7ac59b57cad3b72c6ac6e502d7f81d",
+    "content-hash": "0c356e9e1696628e85877e1c6aa294b2",
     "packages": [
         {
             "name": "getkirby/composer-installer",
@@ -321,16 +321,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "4.7.0",
+            "version": "4.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "938fe98951cace6c77aab744779bf4e0799ad705"
+                "reference": "26f50e025ab734c6c094f8a1da90c2287ab5337f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/938fe98951cace6c77aab744779bf4e0799ad705",
-                "reference": "938fe98951cace6c77aab744779bf4e0799ad705",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/26f50e025ab734c6c094f8a1da90c2287ab5337f",
+                "reference": "26f50e025ab734c6c094f8a1da90c2287ab5337f",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +420,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-03-25T11:15:09+00:00"
+            "time": "2025-05-14T08:47:42+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -798,7 +798,7 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.31.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -857,7 +857,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -960,7 +960,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.31.0",
+            "version": "v1.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -1021,7 +1021,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.32.0"
             },
             "funding": [
                 {
