@@ -198,7 +198,7 @@ async function formatProperty(prop, value) {
 <style scoped>
 .k-serp-section {
   --serp-favicon-background: light-dark(#f1f3f4, #fff);
-  --serp-favicon-border: light-dark(#ecedef, #9aa0a6);
+  --serp-favicon-border: light-dark(#ecedef, #5c5f5e);
   --serp-color-title: light-dark(#1a0dab, #99c3ff);
   --serp-color-text: light-dark(#4d5156, #bfbfbf);
 }
