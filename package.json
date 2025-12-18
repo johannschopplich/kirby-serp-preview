@@ -27,9 +27,6 @@
     "zx": "^8.8.5"
   },
   "pnpm": {
-    "overrides": {
-      "c12": "3.2.0"
-    },
     "onlyBuiltDependencies": [
       "@parcel/watcher",
       "esbuild"
