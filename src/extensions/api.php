@@ -1,5 +1,6 @@
 <?php
 
+use Closure;
 use Kirby\Cms\App;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\NotFoundException;
@@ -26,7 +27,7 @@ return [
 
                 $formatter = $kirby->option('johannschopplich.serp-preview.formatters.' . $property);
 
-                if (!is_callable($formatter)) {
+                if (!$formatter instanceof Closure) {
                     throw new NotFoundException('Invalid formatter "' . $property . '"');
                 }
 

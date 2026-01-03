@@ -1,5 +1,6 @@
 <?php
 
+use Closure;
 use Kirby\Toolkit\I18n;
 
 return [
@@ -29,9 +30,9 @@ return [
                 // Merge user configuration with defaults
                 $config = array_replace_recursive($defaultConfig, $config);
 
-                // Uncheck all all resolver but check if they contain a function
+                // Unset all resolvers but check if they contain a closure
                 foreach (['title', 'description'] as $key) {
-                    $config['parsers'][$key] = isset($config['parsers'][$key]) && is_callable($config['parsers'][$key]);
+                    $config['parsers'][$key] = ($config['parsers'][$key] ?? null) instanceof Closure;
                 }
 
                 return $config;
