@@ -6,12 +6,12 @@ Preview how your pages will appear in Google search results, directly in the Kir
 
 ## Features
 
-- Google-style search result preview in the Panel
-- Dark and light mode support (adapts to Panel theme)
-- Kirby query language support in configuration
-- Multi-language ready
-- Custom formatters for title and description
-- Optional Google Search Console link
+- 🎯 Google-style search result preview in the Panel
+- 🌓 Dark and light mode support (adapts to Panel theme)
+- 🧩 Kirby query language support in configuration
+- 🗺️ Multi-language ready
+- ✂️ Custom formatters for title and description
+- 📊 Optional Google Search Console link
 
 > [!TIP]
 > Ready for Kirby 5! The plugin adapts to the Panel theme and uses Google's dark mode colors.
@@ -137,11 +137,11 @@ You can transform the title and description before they are displayed using cust
 return [
     'johannschopplich.serp-preview' => [
         'formatters' => [
-            'title' => function (string $value, Kirby\Cms\Page $page) {
+            'title' => function (string $value, \Kirby\Cms\Page $page) {
                 // Example: Limit title length
                 return Str::short($value, 60);
             },
-            'description' => function (string $value, Kirby\Cms\Page $page) {
+            'description' => function (string $value, \Kirby\Cms\Page $page) {
                 // Example: Strip HTML and limit length
                 return Str::short(strip_tags($value), 160);
             }
