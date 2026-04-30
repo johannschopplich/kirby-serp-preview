@@ -20,6 +20,9 @@ importers:
       eslint:
         specifier: ^10.2.1
         version: 10.2.1(jiti@2.6.1)
+      kirby-types:
+        specifier: ^1.4.9
+        version: 1.4.9(vue@2.7.16)
       kirbyup:
         specifier: ^3.4.1
         version: 3.4.1(jiti@2.6.1)(rollup@4.60.2)(yaml@2.8.3)
@@ -1785,8 +1788,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kirby-types@1.4.8:
-    resolution: {integrity: sha512-K1LcO8VYeeAorllRYETU0uZdQ9sV1J0J+/M02WXpYh6sKCUDJZeIOyHEZP4hUPEGwUVeOQ5VzEENoDGQD687Yg==}
+  kirby-types@1.4.9:
+    resolution: {integrity: sha512-0r3SEgfeyxjSk/wSAvYroXeEJoxPSThIV8j3ouSfK22adcCWkD837ZvGDlzG213HFMnDBz+6omXT+hiPRSYNZg==}
     peerDependencies:
       dayjs: ^1.11.13
       prosemirror-commands: ^1.7.1
@@ -4240,7 +4243,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kirby-types@1.4.8(vue@2.7.16):
+  kirby-types@1.4.9(vue@2.7.16):
     optionalDependencies:
       vue: 2.7.16
 
@@ -4281,7 +4284,7 @@ snapshots:
 
   kirbyuse@1.3.1:
     dependencies:
-      kirby-types: 1.4.8(vue@2.7.16)
+      kirby-types: 1.4.9(vue@2.7.16)
       vue: 2.7.16
 
   levn@0.4.1:
