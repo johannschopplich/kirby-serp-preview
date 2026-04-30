@@ -2,6 +2,7 @@ import antfu from "@antfu/eslint-config";
 
 export default antfu({
   stylistic: false,
+  unocss: true,
   vue: {
     // https://github.com/antfu/eslint-config/issues/367
     sfcBlocks: {

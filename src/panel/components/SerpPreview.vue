@@ -154,7 +154,7 @@ async function formatProperty(prop, value) {
       <div class="ksp-mb-2 ksp-flex ksp-items-center ksp-gap-3">
         <figure
           v-if="faviconUrl"
-          class="ksp-inline-flex ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-items-center ksp-justify-center ksp-rounded-full ksp-border ksp-border-solid ksp-border-[var(--serp-favicon-border)] ksp-bg-[var(--serp-favicon-background)]"
+          class="ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-inline-flex ksp-items-center ksp-justify-center ksp-border ksp-border-[var(--serp-favicon-border)] ksp-rounded-full ksp-border-solid ksp-bg-[var(--serp-favicon-background)]"
         >
           <img
             class="ksp-block ksp-h-[18px] ksp-w-[18px]"
@@ -181,7 +181,7 @@ async function formatProperty(prop, value) {
 
       <p
         v-show="description"
-        class="ksp-mt-1 ksp-line-clamp-2 ksp-text-sm ksp-text-[var(--serp-color-text)]"
+        class="ksp-line-clamp-2 ksp-mt-1 ksp-text-sm ksp-text-[var(--serp-color-text)]"
       >
         {{ descriptionProxy || description }}
       </p>
