@@ -121,10 +121,11 @@ watch(
   },
 );
 
-updateSectionData();
-
 // Guard against a stale load winning a race on rapid language switches
 let loadToken = 0;
+
+updateSectionData();
+
 async function updateSectionData() {
   const token = ++loadToken;
   const response = await load({
