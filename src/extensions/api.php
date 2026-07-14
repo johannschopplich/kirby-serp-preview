@@ -26,12 +26,7 @@ return [
                 }
 
                 $formatter = $kirby->option('johannschopplich.serp-preview.formatters.' . $property);
-
-                if (!$formatter instanceof Closure) {
-                    throw new NotFoundException('Invalid formatter "' . $property . '"');
-                }
-
-                $text = $formatter($value, $page);
+                $text = $formatter instanceof Closure ? $formatter($value, $page) : $value;
 
                 return [
                     'status' => 'ok',

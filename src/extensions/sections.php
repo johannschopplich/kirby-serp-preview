@@ -23,19 +23,18 @@ return [
                 $kirby = $this->kirby();
                 $config = $kirby->option('johannschopplich.serp-preview', []);
 
-                $defaultConfig = [
-                    'parsers' => []
-                ];
-
-                // Merge user configuration with defaults
-                $config = array_replace_recursive($defaultConfig, $config);
-
-                // Unset all resolvers but check if they contain a closure
-                foreach (['title', 'description'] as $key) {
-                    $config['parsers'][$key] = ($config['parsers'][$key] ?? null) instanceof Closure;
+                if (!is_array($config)) {
+                    $config = [];
                 }
 
-                return $config;
+                $formatters = $config['formatters'] ?? [];
+
+                return [
+                    'formatters' => [
+                        'title' => ($formatters['title'] ?? null) instanceof Closure,
+                        'description' => ($formatters['description'] ?? null) instanceof Closure
+                    ]
+                ];
             },
             'faviconUrl' => function () {
                 return $this->tryResolveQuery($this->faviconUrl);
@@ -60,6 +59,14 @@ return [
             },
             'defaultDescription' => function () {
                 return $this->tryResolveQuery($this->defaultDescription);
+            },
+            'searchConsoleUrl' => function () {
+                return $this->tryResolveQuery($this->searchConsoleUrl);
+            },
+            'previewUrl' => function () {
+                $model = $this->model();
+
+                return method_exists($model, 'previewUrl') ? $model->previewUrl() : null;
             }
         ],
         'methods' => [
@@ -68,7 +75,8 @@ return [
                     // Replace all matches of KQL parts with the query results
                     $value = preg_replace_callback('!\{\{(.+?)\}\}!', function ($matches) {
                         $result = $this->model()->query(trim($matches[1]));
-                        return $result ?? '';
+
+                        return is_scalar($result) || $result instanceof \Stringable ? (string)$result : '';
                     }, $value);
                 }
 

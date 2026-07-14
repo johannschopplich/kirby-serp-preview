@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+import type { SectionData } from "../types";
 import {
   computed,
   ref,
@@ -22,70 +23,81 @@ export default {
 };
 </script>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps(propsDefinition);
 
 const panel = usePanel();
 const api = useApi();
 const { t } = useI18n();
 const { load } = useSection();
-
-const label = ref();
-const faviconUrl = ref();
-const siteTitle = ref();
-const siteUrl = ref();
-const titleSeparator = ref();
-const titleContentKey = ref();
-const defaultTitle = ref();
-const descriptionContentKey = ref();
-const defaultDescription = ref();
-const searchConsoleUrl = ref();
-const config = ref();
-
-// Local state
-const previewUrl = ref("");
-const titleProxy = ref("");
-const descriptionProxy = ref("");
-
 const { currentContent } = useContent();
+
+// Single source of truth for the server-provided section data
+const data = ref<SectionData>({});
+
+// Derived view state
+const label = computed(
+  () => t(data.value.label) || panel.t("johannschopplich.serp-preview.label"),
+);
+const config = computed(() => data.value.config);
+
 const path = computed(() => {
-  if (!previewUrl.value) return "";
-  const url = new URL(previewUrl.value);
-  return url.pathname;
+  const { previewUrl } = data.value;
+  if (!previewUrl) return "";
+
+  try {
+    return new URL(previewUrl).pathname;
+  } catch {
+    // Ignore malformed preview URLs and fall back to the site root
+    return "";
+  }
 });
 
 const title = computed(
   () =>
-    currentContent.value[titleContentKey.value] ||
-    defaultTitle.value ||
-    [panel.view.title, titleSeparator.value, siteTitle.value].join(" "),
+    currentContent.value[data.value.titleContentKey!] ||
+    data.value.defaultTitle ||
+    [panel.view.title, data.value.titleSeparator, data.value.siteTitle].join(
+      " ",
+    ),
 );
 const description = computed(
   () =>
-    (descriptionContentKey.value
-      ? currentContent.value[descriptionContentKey.value]
-      : undefined) || defaultDescription.value,
+    (data.value.descriptionContentKey
+      ? currentContent.value[data.value.descriptionContentKey]
+      : undefined) || data.value.defaultDescription,
 );
 
-watch(
-  // Will be `null` in single language setups
-  () => panel.language.code,
-  () => {
-    // Update the section props when the language changes to
-    // re-evaluate all queries
-    updateSectionData();
-  },
-);
+// Formatted proxies, populated only when a server-side formatter exists
+const titleProxy = ref("");
+const descriptionProxy = ref("");
 
 const throttle = pThrottle({
   limit: 1,
   interval: 250,
 });
+
+// Monotonic tokens guard against a slow response overwriting a newer value
+let titleFormatToken = 0;
 const throttledFormatTitle = throttle(async (value) => {
-  titleProxy.value = await formatProperty("title", value);
+  const token = ++titleFormatToken;
+  try {
+    const text = await formatProperty("title", value);
+    if (token === titleFormatToken) titleProxy.value = text;
+  } catch {
+    // Keep the last successfully formatted value on failure
+  }
 });
+
+let descriptionFormatToken = 0;
 const throttledFormatDescription = throttle(async (value) => {
-  descriptionProxy.value = await formatProperty("description", value);
+  const token = ++descriptionFormatToken;
+  try {
+    const text = await formatProperty("description", value);
+    if (token === descriptionFormatToken) descriptionProxy.value = text;
+  } catch {
+    // Keep the last successfully formatted value on failure
+  }
 });
 
 watch(title, (value) => {
@@ -100,49 +112,43 @@ watch(description, (value) => {
   }
 });
 
-updateSectionData(true);
+watch(
+  // Will be `null` in single-language setups
+  () => panel.language.code,
+  () => {
+    // Re-evaluate all server-side queries when the language changes
+    updateSectionData();
+  },
+);
 
-async function updateSectionData(isInitializing = false) {
+updateSectionData();
+
+// Guard against a stale load winning a race on rapid language switches
+let loadToken = 0;
+async function updateSectionData() {
+  const token = ++loadToken;
   const response = await load({
     parent: props.parent,
     name: props.name,
   });
 
-  // Set values once that don't need to be re-evaluated on the server
-  // when the language changes
-  if (isInitializing) {
-    label.value =
-      t(response.label) || panel.t("johannschopplich.serp-preview.label");
-    titleContentKey.value = response.titleContentKey;
-    descriptionContentKey.value = response.descriptionContentKey;
-    config.value = response.config;
-    searchConsoleUrl.value = response.searchConsoleUrl;
+  if (token === loadToken) {
+    data.value = response;
   }
-
-  faviconUrl.value = response.faviconUrl;
-  siteTitle.value = response.siteTitle;
-  siteUrl.value = response.siteUrl;
-  titleSeparator.value = response.titleSeparator;
-  defaultTitle.value = response.defaultTitle;
-  defaultDescription.value = response.defaultDescription;
-
-  // Update the path
-  const data = await panel.api.get(panel.view.path, { select: "previewUrl" });
-  previewUrl.value = data.previewUrl;
 }
 
-async function formatProperty(prop, value) {
-  // Replace leading `pages/`
+async function formatProperty(prop: "title" | "description", value: string) {
+  // Reverse Kirby's Panel path encoding (`pages/a+b` → `a/b`)
   const pageId = panel.view.path.startsWith("pages/")
     ? panel.view.path.slice(6).replaceAll("+", "/")
     : undefined;
 
-  const { data } = await api.post(`__serp-preview__/format/${prop}`, {
+  const response = await api.post(`__serp-preview__/format/${prop}`, {
     pageId,
     value,
   });
 
-  return data.text;
+  return response.data.text;
 }
 </script>
 
@@ -152,23 +158,23 @@ async function formatProperty(prop, value) {
       class="ksp-overflow-hidden ksp-rounded-[var(--input-rounded)] ksp-bg-[var(--input-color-back)] ksp-p-4"
     >
       <div class="ksp-mb-2 ksp-flex ksp-items-center ksp-gap-3">
-        <figure
-          v-if="faviconUrl"
+        <span
+          v-if="data.faviconUrl"
           class="ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-inline-flex ksp-items-center ksp-justify-center ksp-border ksp-border-[var(--serp-favicon-border)] ksp-rounded-full ksp-border-solid ksp-bg-[var(--serp-favicon-background)]"
         >
           <img
             class="ksp-block ksp-h-[18px] ksp-w-[18px]"
-            :src="faviconUrl"
+            :src="data.faviconUrl"
             alt=""
           />
-        </figure>
+        </span>
         <div class="ksp-flex ksp-flex-col">
           <span class="ksp-text-sm ksp-text-[var(--serp-color-text)]">{{
-            siteTitle
+            data.siteTitle
           }}</span>
           <span
             class="ksp-line-clamp-1 ksp-text-xs ksp-text-[var(--serp-color-text)]"
-            >{{ joinURL(siteUrl, path) }}</span
+            >{{ joinURL(data.siteUrl, path) }}</span
           >
         </div>
       </div>
@@ -187,9 +193,9 @@ async function formatProperty(prop, value) {
       </p>
     </div>
 
-    <k-button-group v-show="searchConsoleUrl" class="ksp-mt-2 ksp-w-full">
-      <k-button :link="searchConsoleUrl" icon="open" target="_blank">
-        Google Search Console
+    <k-button-group v-show="data.searchConsoleUrl" class="ksp-mt-2 ksp-w-full">
+      <k-button :link="data.searchConsoleUrl" icon="open" target="_blank">
+        {{ panel.t("johannschopplich.serp-preview.searchConsole") }}
       </k-button>
     </k-button-group>
   </k-section>
