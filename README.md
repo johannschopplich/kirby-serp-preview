@@ -1,20 +1,18 @@
-![Kirby Search Engine Result Page Preview screenshot](./.github/kirby-serp-preview.png)
+![Kirby SERP Preview screenshot](./.github/kirby-serp-preview.png)
 
 # Kirby SERP Preview
 
-Preview how your pages will appear in Google search results, directly in the Kirby Panel.
+See exactly how your pages will appear in Google search results – updating live as you edit, right in the Kirby Panel.
 
 ## Features
 
-- 🎯 Google-style search result preview in the Panel
-- 🌓 Dark and light mode support (adapts to Panel theme)
+- ⚡ Live preview that updates as you type
+- 🎯 Google-style search result snippet in the Panel
+- 🌓 Dark and light mode – adapts to the Panel theme with Google's own colors
 - 🧩 Kirby query language support in configuration
 - 🗺️ Multi-language ready
 - ✂️ Custom formatters for title and description
 - 📊 Optional Google Search Console link
-
-> [!TIP]
-> Ready for Kirby 5! The plugin adapts to the Panel theme and uses Google's dark mode colors.
 
 ## Requirements
 
@@ -42,11 +40,11 @@ sections:
     type: serp-preview
 ```
 
-That's it! The preview will show:
+That's it. The preview shows:
 
-- **Title:** Page title + separator + site title
-- **URL:** Your site URL + page path
-- **Description:** Empty (until configured)
+- **Title:** page title + separator + site title
+- **URL:** your site URL + page path
+- **Description:** empty until configured
 
 ## Configuration
 
@@ -71,86 +69,59 @@ sections:
     searchConsoleUrl: "https://search.google.com/search-console"
 ```
 
-### Options Reference
+### Options
 
-Options marked with **Query** support [Kirby's query language](https://getkirby.com/docs/guide/blueprints/query-language), e.g. `{{ site.title.value }}`.
+Options marked **Query** support [Kirby's query language](https://getkirby.com/docs/guide/blueprints/query-language), e.g. `{{ site.title.value }}`.
 
-| Option                  | Default                  | Query | Description                                                |
-| ----------------------- | ------------------------ | ----- | ---------------------------------------------------------- |
-| `siteTitle`             | `{{ site.title.value }}` | Yes   | Site name shown in the preview                             |
-| `siteUrl`               | `{{ kirby.url }}`        | Yes   | Site URL shown in the preview                              |
-| `faviconUrl`            | –                        | Yes   | URL to your favicon                                        |
-| `titleSeparator`        | `–`                      | Yes   | Separator between page title and site title                |
-| `titleContentKey`       | –                        | No    | Field name for custom title (e.g. `metaTitle`)             |
-| `defaultTitle`          | –                        | Yes   | Fallback title if `titleContentKey` is empty               |
-| `descriptionContentKey` | –                        | No    | Field name for custom description (e.g. `metaDescription`) |
-| `defaultDescription`    | –                        | Yes   | Fallback description if `descriptionContentKey` is empty   |
-| `searchConsoleUrl`      | –                        | No    | Shows a link button to Google Search Console               |
+| Option                  | Default                  | Query | Description                                                 |
+| ----------------------- | ------------------------ | ----- | ----------------------------------------------------------- |
+| `siteTitle`             | `{{ site.title.value }}` | Yes   | Site name shown in the preview                              |
+| `siteUrl`               | `{{ kirby.url }}`        | Yes   | Site URL shown in the preview                               |
+| `faviconUrl`            | –                        | Yes   | URL to your favicon                                         |
+| `titleSeparator`        | `–`                      | Yes   | Separator between page title and site title                 |
+| `titleContentKey`       | –                        | No    | Field name for a custom title (e.g. `metaTitle`)            |
+| `defaultTitle`          | –                        | Yes   | Fallback title if `titleContentKey` is empty                |
+| `descriptionContentKey` | –                        | No    | Field name for a custom description (e.g. `metaDescription`) |
+| `defaultDescription`    | –                        | Yes   | Fallback description if `descriptionContentKey` is empty     |
+| `searchConsoleUrl`      | –                        | No    | Shows a link button to Google Search Console                |
 
-## How It Works
+### Title & Description Resolution
 
-### Title Resolution
+**Title** resolves in this order:
 
-The preview title is determined in this order:
+1. Value of the `titleContentKey` field, if set
+2. `defaultTitle`, if configured
+3. Page title + separator + site title (e.g. `About Us – My Website`)
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│  1. titleContentKey field has value?                        │
-│     ├─ YES → Use field value                                │
-│     └─ NO  ↓                                                │
-│                                                             │
-│  2. defaultTitle is configured?                             │
-│     ├─ YES → Use defaultTitle (query supported)             │
-│     └─ NO  ↓                                                │
-│                                                             │
-│  3. Fallback: Page Title + Separator + Site Title           │
-│     → "About Us – My Website"                               │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+**Description** resolves in this order:
 
-### Description Resolution
-
-The preview description is determined in this order:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│  1. descriptionContentKey field has value?                  │
-│     ├─ YES → Use field value                                │
-│     └─ NO  ↓                                                │
-│                                                             │
-│  2. defaultDescription is configured?                       │
-│     ├─ YES → Use defaultDescription (query supported)       │
-│     └─ NO  → No description shown                           │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
+1. Value of the `descriptionContentKey` field, if set
+2. `defaultDescription`, if configured
+3. No description shown
 
 ## Custom Formatters
 
-You can transform the title and description before they are displayed using custom formatters. This is useful for truncating text, removing HTML, or applying other transformations.
+Transform the title and description before they are displayed – useful for truncating text, stripping HTML, or applying other adjustments. Formatters are defined in your configuration and receive the current value and the page object, so transformations can be page-specific:
 
 ```php
 // site/config/config.php
+use Kirby\Toolkit\Str;
+
 return [
     'johannschopplich.serp-preview' => [
         'formatters' => [
             'title' => function (string $value, \Kirby\Cms\Page $page) {
-                // Example: Limit title length
+                // Example: limit the title length
                 return Str::short($value, 60);
             },
             'description' => function (string $value, \Kirby\Cms\Page $page) {
-                // Example: Strip HTML and limit length
+                // Example: strip HTML and limit the length
                 return Str::short(strip_tags($value), 160);
             }
         ]
     ]
 ];
 ```
-
-The formatter receives the current value and the page object, allowing page-specific transformations.
 
 ## License
 
