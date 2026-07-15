@@ -1,6 +1,5 @@
 <?php
 
-use Closure;
 use Kirby\Toolkit\I18n;
 
 return [
