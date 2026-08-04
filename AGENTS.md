@@ -2,42 +2,25 @@
 
 Kirby CMS Panel plugin that renders a live Google search result (SERP) preview of a page, updating as its content is edited.
 
-## Tech Stack
-
-- Panel: Vue 2.7 with Composition API (`<script setup>`, composables)
-- Build: kirbyup (Vite-based bundler for Kirby Panel plugins)
-- Vue utilities: kirbyuse (provides `usePanel`, `useSection`, `useContent`, etc.)
-- Styles: UnoCSS with `presetWind3` (Tailwind v3-compatible utilities, prefixed with `ksp-`)
-- PHP: Kirby 4/5 compatible
-
 ## Commands
 
-- `pnpm run build` - build the Panel bundle (`index.js` / `index.css`)
-- `pnpm run dev` - watch and rebuild during development
-- `pnpm run lint` / `pnpm run lint:fix` - lint the Panel source
-- `pnpm run test:types` - typecheck with `tsc`
+- `composer csfix` – php-cs-fixer, which lives in `tools/phpcs/vendor/bin/`, not `vendor/bin/`
+- `pnpm run test:types` – typecheck with `tsc`
+- `pnpm run lint` – ESLint
+- `pnpm run build` – build the Panel bundle (`index.js` / `index.css`)
 
-## Entry Points
+There is no PHP test suite in this repo.
 
-- Plugin ID: `johannschopplich/serp-preview`
-- PHP bootstrap: `index.php` (registers the section, API route, and translations)
-- Panel entry: `src/panel/index.ts` (registers the Vue section via `window.panel.plugin()`)
-- Section component: `src/panel/components/SerpPreview.vue`
-- API route: `src/extensions/api.php`
+## Conventions
 
-## Architecture
-
-The Panel entry `src/panel/index.ts` registers a single `serp-preview` section.
-
-PHP extensions in `src/extensions/`:
-
-- `sections.php`: Section props, computed values, and `{{ }}` query resolution (`tryResolveQuery`)
-- `api.php`: Authenticated `format/*` route applying optional title/description formatter closures
-- `translations.php`: i18n strings (en, de, fr, nl)
+- Formatter closures stay on the server. The Panel receives only booleans saying whether a title or description formatter is configured, and calls the `format/*` route to apply them.
+- `src/env.d.ts` references `kirbyuse` explicitly: the Panel entry only imports the section component, so the global `Window` augmentation is otherwise absent from the program.
+- Comments explain why, not what. In `src/classes/**` a wrapped comment ends with a full stop and a single-line one does not; comments in `src/panel/**` never do.
 
 ## Search Hints
 
-- `window.panel.plugin("johannschopplich/serp-preview"` - Panel registration
-- `tryResolveQuery` - resolves `{{ }}` Kirby query placeholders in section props
-- `config.formatters` - booleans signalling whether a title/description formatter closure is configured
-- `__serp-preview__/format/` - authenticated formatter API route
+- `window.panel.plugin("johannschopplich/serp-preview"` – Panel registration
+- `App::plugin(` – PHP plugin registration
+- `tryResolveQuery` – resolves `{{ }}` Kirby query placeholders in section props
+- `config.formatters` – booleans signalling whether a formatter closure is configured
+- `__serp-preview__/format/` – authenticated formatter API route

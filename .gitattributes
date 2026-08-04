@@ -6,6 +6,7 @@
 # Build tooling
 scripts/ export-ignore
 src/assets/ export-ignore
+src/env.d.ts export-ignore
 src/panel/ export-ignore
 eslint.config.mjs export-ignore
 eslint.config.ts export-ignore
@@ -28,6 +29,7 @@ pnpm-workspace.yaml export-ignore
 .env.example export-ignore
 .vscode/ export-ignore
 AGENTS.md export-ignore
+CLAUDE.md export-ignore
 composer.lock export-ignore
 mprocs.yaml export-ignore
 playground/ export-ignore
