@@ -15,7 +15,6 @@ There is no PHP test suite in this repo.
 
 - Formatter closures stay on the server. The Panel receives only booleans saying whether a title or description formatter is configured, and calls the `format/*` route to apply them.
 - `src/env.d.ts` references `kirbyuse` explicitly: the Panel entry only imports the section component, so the global `Window` augmentation is otherwise absent from the program.
-- Comments explain why, not what. In `src/classes/**` a wrapped comment ends with a full stop and a single-line one does not; comments in `src/panel/**` never do.
 
 ## Search Hints
 
