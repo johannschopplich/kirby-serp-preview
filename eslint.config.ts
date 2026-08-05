@@ -16,7 +16,7 @@ export default antfu({
 }).append({
   files: ["**/*.vue"],
   rules: {
-    // Ignore rules clashing with Prettier
+    // Ignore rules clashing with Prettier.
     "vue/html-closing-bracket-newline": "off",
     "vue/html-indent": "off",
     "vue/html-self-closing": "off",
