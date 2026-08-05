@@ -32,10 +32,9 @@ const { t } = useI18n();
 const { load } = useSection();
 const { currentContent } = useContent();
 
-// Single source of truth for the server-provided section data
+// Single source of truth for the server-provided section data.
 const data = ref<SectionData>({});
 
-// Derived view state
 const label = computed(
   () => t(data.value.label) || panel.t("johannschopplich.serp-preview.label"),
 );
@@ -48,7 +47,7 @@ const path = computed(() => {
   try {
     return new URL(previewUrl).pathname;
   } catch {
-    // Ignore malformed preview URLs and fall back to the site root
+    // Ignore malformed preview URLs and fall back to the site root.
     return "";
   }
 });
@@ -68,7 +67,7 @@ const description = computed(
       : undefined) || data.value.defaultDescription,
 );
 
-// Formatted proxies, populated only when a server-side formatter exists
+// Formatted proxies, populated only when a server-side formatter exists.
 const titleProxy = ref("");
 const descriptionProxy = ref("");
 
@@ -77,7 +76,7 @@ const throttle = pThrottle({
   interval: 250,
 });
 
-// Monotonic tokens guard against a slow response overwriting a newer value
+// Monotonic tokens guard against a slow response overwriting a newer value.
 let titleFormatToken = 0;
 const throttledFormatTitle = throttle(async (value) => {
   const token = ++titleFormatToken;
@@ -85,7 +84,7 @@ const throttledFormatTitle = throttle(async (value) => {
     const text = await formatProperty("title", value);
     if (token === titleFormatToken) titleProxy.value = text;
   } catch {
-    // Keep the last successfully formatted value on failure
+    // Keep the last successfully formatted value on failure.
   }
 });
 
@@ -96,7 +95,7 @@ const throttledFormatDescription = throttle(async (value) => {
     const text = await formatProperty("description", value);
     if (token === descriptionFormatToken) descriptionProxy.value = text;
   } catch {
-    // Keep the last successfully formatted value on failure
+    // Keep the last successfully formatted value on failure.
   }
 });
 
@@ -113,15 +112,15 @@ watch(description, (value) => {
 });
 
 watch(
-  // Will be `null` in single-language setups
+  // Will be `null` in single-language setups.
   () => panel.language.code,
   () => {
-    // Re-evaluate all server-side queries when the language changes
+    // Re-evaluate all server-side queries.
     updateSectionData();
   },
 );
 
-// Guard against a stale load winning a race on rapid language switches
+// Guard against a stale load winning a race on rapid language switches.
 let loadToken = 0;
 
 updateSectionData();
@@ -139,7 +138,7 @@ async function updateSectionData() {
 }
 
 async function formatProperty(prop: "title" | "description", value: string) {
-  // Reverse Kirby's Panel path encoding (`pages/a+b` → `a/b`)
+  // Reverse Kirby's Panel path encoding (`pages/a+b` → `a/b`).
   const pageId = panel.view.path.startsWith("pages/")
     ? panel.view.path.slice(6).replaceAll("+", "/")
     : undefined;
