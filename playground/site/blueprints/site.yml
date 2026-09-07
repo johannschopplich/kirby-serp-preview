@@ -1,0 +1,9 @@
+title: Site
+
+columns:
+  - width: 1/1
+    sections:
+      pages:
+        type: pages
+        templates:
+          - default
