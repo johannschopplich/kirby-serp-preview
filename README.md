@@ -32,7 +32,7 @@ Download and copy this repository to `/site/plugins/kirby-serp-preview`.
 
 ## Documentation
 
-For detailed usage instructions, visit the [Kirby SERP Preview documentation](https://kirby.tools/docs/serp-preview).
+For installation, configuration, and usage, see the [Kirby SERP Preview documentation](https://kirby.tools/docs/serp-preview).
 
 ## License
 
