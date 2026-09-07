@@ -1,5 +1,6 @@
 <?php
 
+use JohannSchopplich\KirbyTools\QueryResolver;
 use Kirby\Toolkit\I18n;
 
 return [
@@ -70,16 +71,7 @@ return [
         ],
         'methods' => [
             'tryResolveQuery' => function ($value, $fallback = null) {
-                if (is_string($value)) {
-                    // Replace each `{{ ... }}` placeholder with its Kirby query result.
-                    $value = preg_replace_callback('!\{\{(.+?)\}\}!', function ($matches) {
-                        $result = $this->model()->query(trim($matches[1]));
-
-                        return is_scalar($result) || $result instanceof \Stringable ? (string)$result : '';
-                    }, $value);
-                }
-
-                return $value ?? $fallback;
+                return QueryResolver::resolve($this->model(), $value, $fallback);
             }
         ]
     ]

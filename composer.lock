@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c41ec62b05411477dbfc4017c79ae4e2",
+    "content-hash": "a683c2e9ca68edf9ca529dc3ead297e6",
     "packages": [
         {
             "name": "getkirby/composer-installer",
@@ -52,6 +52,55 @@
                 }
             ],
             "time": "2020-12-28T12:54:39+00:00"
+        },
+        {
+            "name": "johannschopplich/kirby-tools-utils",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kirby-tools/utils.git",
+                "reference": "71b4b67f466c6c99b5fbe5a21a2e40d63d3e7b5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kirby-tools/utils/zipball/71b4b67f466c6c99b5fbe5a21a2e40d63d3e7b5d",
+                "reference": "71b4b67f466c6c99b5fbe5a21a2e40d63d3e7b5d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "getkirby/cms": "^5",
+                "phpunit/phpunit": "^12"
+            },
+            "type": "library",
+            "extra": {
+                "kirby-cms-path": false
+            },
+            "autoload": {
+                "psr-4": {
+                    "JohannSchopplich\\KirbyTools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Johann Schopplich",
+                    "email": "hello@johannschopplich.com",
+                    "homepage": "https://johannschopplich.com"
+                }
+            ],
+            "description": "Shared utility classes for Kirby Tools plugins",
+            "homepage": "https://github.com/kirby-tools/kirby-tools-utils#readme",
+            "support": {
+                "issues": "https://github.com/kirby-tools/utils/issues",
+                "source": "https://github.com/kirby-tools/utils/tree/v0.1.4"
+            },
+            "time": "2026-09-07T07:05:05+00:00"
         }
     ],
     "packages-dev": [
