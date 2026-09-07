@@ -1,4 +1,4 @@
-[![Kirby SERP Preview screenshot](./.github/kirby-serp-preview.png)](https://kirby.tools/serp-preview)
+[![Kirby SERP Preview](https://kirby.tools/social-card/serp-preview.png)](https://kirby.tools/serp-preview)
 
 # Kirby SERP Preview
 
