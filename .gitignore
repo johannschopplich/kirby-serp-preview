@@ -9,6 +9,9 @@
 /vendor
 
 # Playground files
+.env
+.license
+.kirby-tools-licenses
 /playground/public/media/*
 /playground/storage/accounts/*
 /playground/storage/cache/*
