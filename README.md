@@ -9,7 +9,7 @@ Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a 
 - 🖱️ **One Section, Any Page**: Add the section type to a page blueprint – there is nothing else to set up.
 - ⚡ **Redraws as You Type**: The snippet follows the open form rather than the saved content, and never writes back.
 - 🏷️ **Title and Description Fields**: Name the fields it reads, each with a fallback for when they are empty.
-- ✂️ **Formatters**: A closure in your config shortens or cleans the text before the snippet draws it.
+- ✂️ **Formatters**: Trim or clean the text the way your templates do, so the snippet matches the live page.
 - 🧩 **Kirby Queries**: Every display property accepts `{{ ... }}`, resolved against the current model.
 - 🔗 **Search Console Link**: An optional button below the snippet, pointing at the URL you configure.
 - 🌓 **Light and Dark Mode**: Google's own snippet colors, following the Panel theme.
