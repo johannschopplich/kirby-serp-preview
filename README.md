@@ -2,7 +2,7 @@
 
 # Kirby SERP Preview
 
-Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a Panel section that draws the Google result snippet for the page being edited – favicon, site name, URL, title and description – and redraws it as you type, before anything is saved.
+Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a Panel section that draws the Google result snippet for the page being edited – favicon, site name, URL, title, and description – and redraws it as you type, before anything is saved.
 
 ## Features
 
