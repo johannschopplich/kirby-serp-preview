@@ -15,7 +15,7 @@
 /playground/public/media/*
 /playground/storage/accounts/*
 !/playground/storage/accounts/admin
-!/playground/storage/accounts/playgrnd
+!/playground/storage/accounts/playground
 /playground/storage/cache/*
 /playground/storage/sessions/*
 
