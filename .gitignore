@@ -14,6 +14,8 @@
 .kirby-tools-licenses
 /playground/public/media/*
 /playground/storage/accounts/*
+!/playground/storage/accounts/admin
+!/playground/storage/accounts/playgrnd
 /playground/storage/cache/*
 /playground/storage/sessions/*
 
