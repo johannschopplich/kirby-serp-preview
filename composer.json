@@ -29,7 +29,8 @@
     "johannschopplich/kirby-tools-utils": "^0.1"
   },
   "require-dev": {
-    "getkirby/cms": "^5"
+    "getkirby/cms": "^5",
+    "vlucas/phpdotenv": "^5"
   },
   "scripts": {
     "dev": [

@@ -3,7 +3,7 @@
 use Kirby\Toolkit\Str;
 
 return [
-    'debug' => true,
+    'debug' => env('KIRBY_DEBUG', false),
 
     'content' => [
         'locking' => false
