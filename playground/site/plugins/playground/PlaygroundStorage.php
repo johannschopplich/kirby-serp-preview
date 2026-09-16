@@ -7,10 +7,8 @@ use Kirby\Content\PlainTextStorage;
 use Kirby\Content\VersionId;
 
 /**
- * Custom storage handler that prevents the `changes` version
- * from being persisted to disk. This ensures that unsaved
- * Panel changes from one user are not visible to others
- * when sharing the same Panel user account.
+ * Storage that never writes the `changes` version, so the unsaved edits of
+ * one visitor stay invisible to the others sharing the demo account.
  */
 class PlaygroundStorage extends PlainTextStorage
 {
