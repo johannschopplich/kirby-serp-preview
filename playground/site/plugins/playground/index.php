@@ -53,7 +53,7 @@ App::plugin('johannschopplich/playground', [
                                 'action' => function () use ($kirby, $isDebug) {
                                     if ($kirby->user() === null) {
                                         // Locally `login?role=playground` signs in the
-                                        // role without `update` to test what it sees.
+                                        // role that cannot update pages, to test what it sees.
                                         $role = $isDebug
                                             ? ($kirby->request()->get('role') ?? 'admin')
                                             : 'playground';
