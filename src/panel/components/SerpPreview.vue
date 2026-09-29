@@ -160,7 +160,7 @@ async function formatProperty(prop: "title" | "description", value: string) {
       <div class="ksp-mb-2 ksp-flex ksp-items-center ksp-gap-3">
         <span
           v-if="data.faviconUrl"
-          class="ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-inline-flex ksp-items-center ksp-justify-center ksp-border ksp-border-[var(--serp-favicon-border)] ksp-rounded-full ksp-border-solid ksp-bg-[var(--serp-favicon-background)]"
+          class="ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-inline-flex ksp-items-center ksp-justify-center ksp-border ksp-border-[color:var(--serp-favicon-border)] ksp-rounded-full ksp-border-solid ksp-bg-[color:var(--serp-favicon-background)]"
         >
           <img
             class="ksp-block ksp-h-[18px] ksp-w-[18px]"
@@ -169,25 +169,25 @@ async function formatProperty(prop: "title" | "description", value: string) {
           />
         </span>
         <div class="ksp-flex ksp-flex-col">
-          <span class="ksp-text-sm ksp-text-[var(--serp-color-text)]">{{
+          <span class="ksp-text-sm ksp-text-[color:var(--serp-color-text)]">{{
             data.siteTitle
           }}</span>
           <span
-            class="ksp-line-clamp-1 ksp-text-xs ksp-text-[var(--serp-color-text)]"
+            class="ksp-line-clamp-1 ksp-text-xs ksp-text-[color:var(--serp-color-text)]"
             >{{ joinURL(data.siteUrl, path) }}</span
           >
         </div>
       </div>
 
       <h3
-        class="ksp-line-clamp-1 ksp-text-xl ksp-text-[var(--serp-color-title)]"
+        class="ksp-line-clamp-1 ksp-text-xl ksp-text-[color:var(--serp-color-title)]"
       >
         {{ titleProxy || title }}
       </h3>
 
       <p
         v-show="description"
-        class="ksp-line-clamp-2 ksp-mt-1 ksp-text-sm ksp-text-[var(--serp-color-text)]"
+        class="ksp-line-clamp-2 ksp-mt-1 ksp-text-sm ksp-text-[color:var(--serp-color-text)]"
       >
         {{ descriptionProxy || description }}
       </p>
