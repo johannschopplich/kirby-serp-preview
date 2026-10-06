@@ -47,6 +47,9 @@
     }
   },
   "extra": {
-    "kirby-cms-path": false
+    "kirby-cms-path": false,
+    "kirby": {
+      "compatible": "^4.0 || ^5.0"
+    }
   }
 }
