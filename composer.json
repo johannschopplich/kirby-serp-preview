@@ -1,17 +1,18 @@
 {
   "name": "johannschopplich/kirby-serp-preview",
-  "description": "Kirby Panel plugin for search engine result page previews",
+  "description": "See the Google snippet as you type",
   "type": "kirby-plugin",
   "version": "1.4.2",
   "keywords": [
-    "google",
     "kirby",
-    "search-engine",
+    "kirby-cms",
+    "kirby-plugin",
     "seo",
-    "serp"
+    "serp",
+    "google"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/johannschopplich/kirby-serp-preview#readme",
+  "homepage": "https://kirby.tools/serp-preview",
   "authors": [
     {
       "name": "Johann Schopplich",
