@@ -29,8 +29,7 @@ App::plugin('johannschopplich/playground', [
         },
 
         // Kirby drops the login view while someone is signed in, so locally
-        // `login?role=…` first signs out a user of another role, when that
-        // role has a user to sign in as.
+        // `login?role=…` first signs out a user of another role.
         'route:before' => function (string $path) {
             $kirby = App::instance();
             $role = $kirby->request()->get('role');
@@ -45,11 +44,7 @@ App::plugin('johannschopplich/playground', [
 
             $user = $kirby->user();
 
-            if (
-                $user !== null &&
-                $user->role()->id() !== $role &&
-                $kirby->users()->role($role)->first() !== null
-            ) {
+            if ($user !== null && $user->role()->id() !== $role) {
                 $user->logout();
             }
         },
