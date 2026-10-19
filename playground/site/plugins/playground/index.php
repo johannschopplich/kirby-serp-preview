@@ -28,6 +28,32 @@ App::plugin('johannschopplich/playground', [
             }
         },
 
+        // Kirby drops the login view while someone is signed in, so locally
+        // `login?role=…` first signs out a user of another role, when that
+        // role has a user to sign in as.
+        'route:before' => function (string $path) {
+            $kirby = App::instance();
+            $role = $kirby->request()->get('role');
+
+            if (
+                $role === null ||
+                $kirby->option('debug') !== true ||
+                $path !== $kirby->option('panel.slug', 'panel') . '/login'
+            ) {
+                return;
+            }
+
+            $user = $kirby->user();
+
+            if (
+                $user !== null &&
+                $user->role()->id() !== $role &&
+                $kirby->users()->role($role)->first() !== null
+            ) {
+                $user->logout();
+            }
+        },
+
         'system.loadPlugins:after' => function () {
             $kirby = App::instance();
 
@@ -53,7 +79,7 @@ App::plugin('johannschopplich/playground', [
                                 'action' => function () use ($kirby, $isDebug) {
                                     if ($kirby->user() === null) {
                                         // Locally `login?role=playground` signs in the
-                                        // role that cannot update pages, to test what it sees.
+                                        // shared demo's role, to test what it sees.
                                         $role = $isDebug
                                             ? ($kirby->request()->get('role') ?? 'admin')
                                             : 'playground';
