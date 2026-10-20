@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'johannschopplich/kirby-serp-preview',
+        'pretty_version' => '1.5.0',
+        'version' => '1.5.0.0',
+        'reference' => null,
+        'type' => 'kirby-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => false,
+    ),
+    'versions' => array(
+        'getkirby/composer-installer' => array(
+            'pretty_version' => '1.2.1',
+            'version' => '1.2.1.0',
+            'reference' => 'c98ece30bfba45be7ce457e1102d1b169d922f3d',
+            'type' => 'composer-plugin',
+            'install_path' => __DIR__ . '/../getkirby/composer-installer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'johannschopplich/kirby-serp-preview' => array(
+            'pretty_version' => '1.5.0',
+            'version' => '1.5.0.0',
+            'reference' => null,
+            'type' => 'kirby-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'johannschopplich/kirby-tools-utils' => array(
+            'pretty_version' => '0.1.4',
+            'version' => '0.1.4.0',
+            'reference' => '71b4b67f466c6c99b5fbe5a21a2e40d63d3e7b5d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../johannschopplich/kirby-tools-utils',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

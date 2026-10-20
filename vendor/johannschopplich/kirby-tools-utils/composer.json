@@ -1,0 +1,40 @@
+{
+  "name": "johannschopplich/kirby-tools-utils",
+  "description": "Shared utility classes for Kirby Tools plugins",
+  "type": "library",
+  "version": "0.1.4",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/kirby-tools/kirby-tools-utils#readme",
+  "authors": [
+    {
+      "name": "Johann Schopplich",
+      "email": "hello@johannschopplich.com",
+      "homepage": "https://johannschopplich.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "getkirby/cms": "^5",
+    "phpunit/phpunit": "^12"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "csfix": "@php tools/phpcs/vendor/bin/php-cs-fixer fix"
+  },
+  "autoload": {
+    "psr-4": {
+      "JohannSchopplich\\KirbyTools\\": "src/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
+  },
+  "extra": {
+    "kirby-cms-path": false
+  }
+}
