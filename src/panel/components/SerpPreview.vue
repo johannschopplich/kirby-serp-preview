@@ -2,6 +2,7 @@
 import type { SectionData } from "../types";
 import {
   computed,
+  onBeforeUnmount,
   ref,
   useApi,
   useContent,
@@ -100,15 +101,26 @@ watch(description, (value) => {
 });
 
 watch(
-  // Will be `null` in single-language setups.
-  () => panel.language.code,
+  [
+    // Will be `null` in single-language setups.
+    () => panel.language.code,
+    // Changes when Kirby reloads the view, for example after the title dialog.
+    () => props.timestamp,
+  ],
   () => {
     // Re-evaluate all server-side queries.
     updateSectionData();
   },
 );
 
-// Guard against a stale load winning a race on rapid language switches.
+// Kirby saves without reloading the view and announces the save with this event.
+panel.events.on("model.update", updateSectionData);
+
+onBeforeUnmount(() => {
+  panel.events.off("model.update", updateSectionData);
+});
+
+// Guard against a stale load overwriting a newer one.
 let loadToken = 0;
 
 updateSectionData();
