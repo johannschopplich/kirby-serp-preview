@@ -5,13 +5,12 @@ Kirby CMS Panel plugin that renders a live Google search result (SERP) preview o
 ## Commands
 
 ```bash
+composer test          # PHPUnit
 composer csfix         # php-cs-fixer, lives in tools/phpcs/vendor/bin/, not vendor/bin/
 pnpm run test:types    # typecheck with tsc
 pnpm run lint          # ESLint
 pnpm run build         # build the Panel bundle (index.js / index.css)
 ```
-
-There is no PHP test suite in this repo.
 
 ## Conventions
 

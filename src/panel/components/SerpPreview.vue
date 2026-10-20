@@ -40,18 +40,6 @@ const label = computed(
 );
 const config = computed(() => data.value.config);
 
-const path = computed(() => {
-  const { previewUrl } = data.value;
-  if (!previewUrl) return "";
-
-  try {
-    return new URL(previewUrl).pathname;
-  } catch {
-    // Ignore malformed preview URLs and fall back to the site root.
-    return "";
-  }
-});
-
 const title = computed(
   () =>
     currentContent.value[data.value.titleContentKey!] ||
@@ -174,7 +162,7 @@ async function formatProperty(prop: "title" | "description", value: string) {
           }}</span>
           <span
             class="ksp-line-clamp-1 ksp-text-xs ksp-text-[color:var(--serp-color-text)]"
-            >{{ joinURL(data.siteUrl, path) }}</span
+            >{{ joinURL(data.siteUrl, data.previewPath) }}</span
           >
         </div>
       </div>

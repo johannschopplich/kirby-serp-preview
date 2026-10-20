@@ -7,7 +7,7 @@ export interface SectionData {
   siteUrl?: string;
   titleSeparator?: string;
   searchConsoleUrl?: string;
-  previewUrl?: string;
+  previewPath?: string;
   titleContentKey?: string;
   defaultTitle?: string;
   descriptionContentKey?: string;

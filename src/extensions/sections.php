@@ -1,6 +1,7 @@
 <?php
 
 use JohannSchopplich\KirbyTools\QueryResolver;
+use Kirby\Http\Url;
 use Kirby\Toolkit\I18n;
 
 return [
@@ -63,10 +64,25 @@ return [
             'searchConsoleUrl' => function () {
                 return $this->tryResolveQuery($this->searchConsoleUrl);
             },
-            'previewUrl' => function () {
+            'previewPath' => function () {
+                /** @var \Kirby\Cms\App */
+                $kirby = $this->kirby();
                 $model = $this->model();
+                $previewUrl = method_exists($model, 'previewUrl') ? $model->previewUrl() : null;
 
-                return method_exists($model, 'previewUrl') ? $model->previewUrl() : null;
+                if ($previewUrl === null) {
+                    return '';
+                }
+
+                $path = Url::path($previewUrl);
+                $installPath = Url::path($kirby->url());
+
+                // Relative to the install, so a subfolder install doesn't show its subfolder twice.
+                if (str_starts_with($path . '/', $installPath . '/')) {
+                    $path = ltrim(substr($path, strlen($installPath)), '/');
+                }
+
+                return $path;
             }
         ],
         'methods' => [

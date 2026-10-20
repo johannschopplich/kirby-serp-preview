@@ -31,6 +31,7 @@
   },
   "require-dev": {
     "getkirby/cms": "^5",
+    "phpunit/phpunit": "^12",
     "vlucas/phpdotenv": "^5"
   },
   "scripts": {
@@ -39,6 +40,7 @@
       "@php -S localhost:8000 -t playground/public vendor/getkirby/cms/router.php"
     ],
     "csfix": "@php tools/phpcs/vendor/bin/php-cs-fixer fix",
+    "test": "phpunit",
     "dist": "composer install --no-dev"
   },
   "config": {
