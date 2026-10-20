@@ -37,10 +37,12 @@
   // Exclude generated build assets from search and file explorer
   "search.exclude": {
     "/index.js": true,
-    "/assets/**": true
+    "/assets/**": true,
+    "/vendor/**": true
   },
   "files.exclude": {
     "/index.js": true,
-    "/assets/**": true
+    "/assets/**": true,
+    "/vendor/**": true
   }
 }

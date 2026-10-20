@@ -1,6 +1,5 @@
 /// <reference types="vite/client" />
 
-// `kirbyuse` globally augments `Window` with the typed `panel` object. Referenced
-// explicitly because the Panel entry only imports the section component (which tsc
-// skips via `@ts-ignore`), so the augmentation is otherwise absent from the program.
+// `kirbyuse` augments `Window` with the typed `panel` object; tsc never loads the
+// section component that imports it, so this file references it.
 /// <reference types="kirbyuse" />

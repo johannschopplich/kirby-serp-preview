@@ -39,7 +39,7 @@
       "@php -S localhost:8000 -t playground/public vendor/getkirby/cms/router.php"
     ],
     "csfix": "@php tools/phpcs/vendor/bin/php-cs-fixer fix",
-    "dist": "composer install --no-dev --optimize-autoloader"
+    "dist": "composer install --no-dev"
   },
   "config": {
     "optimize-autoloader": true,
