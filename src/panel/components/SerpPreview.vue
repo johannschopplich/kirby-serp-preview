@@ -21,14 +21,14 @@ const props = defineProps({
   endpoints: Object,
   faviconUrl: String,
   siteTitle: String,
-  siteUrl: String,
+  siteUrl: { type: String, required: true },
   titleSeparator: String,
   titleContentKey: String,
   defaultTitle: String,
   descriptionContentKey: String,
   defaultDescription: String,
   searchConsoleUrl: String,
-  previewPath: String,
+  previewPath: { type: String, required: true },
   formatters: Object as PropType<{ title: boolean; description: boolean }>,
 });
 
