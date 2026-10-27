@@ -1,59 +1,52 @@
-<script lang="ts">
-import type { SectionData } from "../types";
+<script setup lang="ts">
+import type { PropType } from "vue";
+import { useApi, useContent, usePanel } from "kirbyuse";
+// Aliased, since `<script setup>` exposes imports to the template, where they
+// would shadow the props of the same name.
 import {
-  computed,
-  onBeforeUnmount,
-  ref,
-  useApi,
-  useContent,
-  useI18n,
-  usePanel,
-  useSection,
-  watch,
-} from "kirbyuse";
-import { section } from "kirbyuse/props";
+  help as helpProp,
+  id as idProp,
+  label as labelProp,
+  name as nameProp,
+} from "kirbyuse/props";
 import pThrottle from "p-throttle";
 import { joinURL } from "ufo";
+import { computed, ref, watch } from "vue";
 
-const propsDefinition = {
-  ...section,
-};
-
-export default {
-  inheritAttrs: false,
-};
-</script>
-
-<script setup lang="ts">
-const props = defineProps(propsDefinition);
+const props = defineProps({
+  ...helpProp,
+  ...idProp,
+  ...labelProp,
+  ...nameProp,
+  endpoints: Object,
+  faviconUrl: String,
+  siteTitle: String,
+  siteUrl: String,
+  titleSeparator: String,
+  titleContentKey: String,
+  defaultTitle: String,
+  descriptionContentKey: String,
+  defaultDescription: String,
+  searchConsoleUrl: String,
+  previewPath: String,
+  formatters: Object as PropType<{ title: boolean; description: boolean }>,
+});
 
 const panel = usePanel();
 const api = useApi();
-const { t } = useI18n();
-const { load } = useSection();
 const { currentContent } = useContent();
-
-// Single source of truth for the server-provided section data.
-const data = ref<SectionData>({});
-
-const label = computed(
-  () => t(data.value.label) || panel.t("johannschopplich.serp-preview.label"),
-);
-const config = computed(() => data.value.config);
 
 const title = computed(
   () =>
-    currentContent.value[data.value.titleContentKey!] ||
-    data.value.defaultTitle ||
-    [panel.view.title, data.value.titleSeparator, data.value.siteTitle].join(
-      " ",
-    ),
+    currentContent.value[props.titleContentKey!] ||
+    props.defaultTitle ||
+    [panel.view.title, props.titleSeparator, props.siteTitle].join(" "),
 );
 const description = computed(
   () =>
-    (data.value.descriptionContentKey
-      ? currentContent.value[data.value.descriptionContentKey]
-      : undefined) || data.value.defaultDescription,
+    (props.descriptionContentKey
+      ? currentContent.value[props.descriptionContentKey]
+      : undefined) || props.defaultDescription,
 );
 
 // Formatted proxies, populated only when a server-side formatter exists.
@@ -88,93 +81,79 @@ const throttledFormatDescription = throttle(async (value) => {
   }
 });
 
-watch(title, (value) => {
-  if (config.value?.formatters?.title) {
-    throttledFormatTitle(value);
-  }
-});
-
-watch(description, (value) => {
-  if (config.value?.formatters?.description) {
-    throttledFormatDescription(value);
-  }
-});
-
 watch(
-  [
-    // Will be `null` in single-language setups.
-    () => panel.language.code,
-    // Changes when Kirby reloads the view, for example after the title dialog.
-    () => props.timestamp,
-  ],
-  () => {
-    // Re-evaluate all server-side queries.
-    updateSectionData();
+  title,
+  (value) => {
+    if (props.formatters?.title) {
+      throttledFormatTitle(value);
+    }
   },
+  { immediate: true },
 );
 
-// Kirby saves without reloading the view and announces the save with this event.
-panel.events.on("model.update", updateSectionData);
-
-onBeforeUnmount(() => {
-  panel.events.off("model.update", updateSectionData);
-});
-
-// Guard against a stale load overwriting a newer one.
-let loadToken = 0;
-
-updateSectionData();
-
-async function updateSectionData() {
-  const token = ++loadToken;
-  const response = await load({
-    parent: props.parent,
-    name: props.name,
-  });
-
-  if (token === loadToken) {
-    data.value = response;
-  }
-}
+watch(
+  description,
+  (value) => {
+    if (props.formatters?.description) {
+      throttledFormatDescription(value);
+    }
+  },
+  { immediate: true },
+);
 
 async function formatProperty(prop: "title" | "description", value: string) {
-  // Reverse Kirby's Panel path encoding (`pages/a+b` → `a/b`).
-  const pageId = panel.view.path.startsWith("pages/")
-    ? panel.view.path.slice(6).replaceAll("+", "/")
-    : undefined;
+  const response = await api.post<{ text: string }>(
+    `${props.endpoints!.field}/format/${prop}`,
+    { value },
+  );
 
-  const response = await api.post(`__serp-preview__/format/${prop}`, {
-    pageId,
-    value,
-  });
-
-  return response.data.text;
+  return response.text;
 }
 </script>
 
 <template>
-  <k-section :label="label" class="k-serp-section">
+  <k-field
+    :id="id"
+    :help="help"
+    :input="false"
+    :label="label"
+    :name="name"
+    type="serp-preview"
+    class="k-serp-preview-field"
+  >
+    <template v-if="searchConsoleUrl" #options>
+      <k-button
+        :link="searchConsoleUrl"
+        :responsive="true"
+        :text="panel.t('johannschopplich.serp-preview.searchConsole')"
+        icon="open"
+        size="xs"
+        target="_blank"
+        variant="filled"
+      />
+    </template>
+
     <div
       class="ksp-overflow-hidden ksp-rounded-[var(--input-rounded)] ksp-bg-[var(--input-color-back)] ksp-p-4"
     >
       <div class="ksp-mb-2 ksp-flex ksp-items-center ksp-gap-3">
         <span
-          v-if="data.faviconUrl"
+          v-if="faviconUrl"
           class="ksp-aspect-square ksp-h-[26px] ksp-w-[26px] ksp-inline-flex ksp-items-center ksp-justify-center ksp-border ksp-border-[color:var(--serp-favicon-border)] ksp-rounded-full ksp-border-solid ksp-bg-[color:var(--serp-favicon-background)]"
         >
           <img
             class="ksp-block ksp-h-[18px] ksp-w-[18px]"
-            :src="data.faviconUrl"
+            :src="faviconUrl"
             alt=""
           />
         </span>
         <div class="ksp-flex ksp-flex-col">
           <span class="ksp-text-sm ksp-text-[color:var(--serp-color-text)]">{{
-            data.siteTitle
+            siteTitle
           }}</span>
           <span
             class="ksp-line-clamp-1 ksp-text-xs ksp-text-[color:var(--serp-color-text)]"
-            >{{ joinURL(data.siteUrl, data.previewPath) }}</span
+            >{{ joinURL(siteUrl, previewPath) }}</span
           >
         </div>
       </div>
@@ -192,17 +171,11 @@ async function formatProperty(prop: "title" | "description", value: string) {
         {{ descriptionProxy || description }}
       </p>
     </div>
-
-    <k-button-group v-show="data.searchConsoleUrl" class="ksp-mt-2 ksp-w-full">
-      <k-button :link="data.searchConsoleUrl" icon="open" target="_blank">
-        {{ panel.t("johannschopplich.serp-preview.searchConsole") }}
-      </k-button>
-    </k-button-group>
-  </k-section>
+  </k-field>
 </template>
 
 <style scoped>
-.k-serp-section {
+.k-serp-preview-field {
   --serp-favicon-background: light-dark(#f1f3f4, #fff);
   --serp-favicon-border: light-dark(#ecedef, #5c5f5e);
   --serp-color-title: light-dark(#1a0dab, #99c3ff);
