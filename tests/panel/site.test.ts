@@ -32,7 +32,7 @@ describe("site barrel", () => {
       build: {
         lib: { entry: SITE_ENTRY, formats: ["es"] },
         write: false,
-        rollupOptions: {
+        rolldownOptions: {
           external: (id) => !id.startsWith(".") && !id.startsWith("/"),
         },
       },
