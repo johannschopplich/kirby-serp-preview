@@ -4,6 +4,7 @@ import { useApi, useContent, usePanel } from "kirbyuse";
 // Aliased, since `<script setup>` exposes imports to the template, where they
 // would shadow the props of the same name.
 import {
+  disabled as disabledProp,
   help as helpProp,
   id as idProp,
   label as labelProp,
@@ -14,6 +15,8 @@ import { joinURL } from "ufo";
 import { computed, ref, watch } from "vue";
 
 const props = defineProps({
+  // Declared to keep `disabled` off `k-field`, so the field never looks disabled.
+  ...disabledProp,
   ...helpProp,
   ...idProp,
   ...labelProp,
