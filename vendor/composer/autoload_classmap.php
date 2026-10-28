@@ -7,10 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'JohannSchopplich\\KirbyTools\\FieldNormalizer' => $vendorDir . '/johannschopplich/kirby-tools-utils/src/FieldNormalizer.php',
-    'JohannSchopplich\\KirbyTools\\FieldResolver' => $vendorDir . '/johannschopplich/kirby-tools-utils/src/FieldResolver.php',
-    'JohannSchopplich\\KirbyTools\\ModelResolver' => $vendorDir . '/johannschopplich/kirby-tools-utils/src/ModelResolver.php',
-    'JohannSchopplich\\KirbyTools\\QueryResolver' => $vendorDir . '/johannschopplich/kirby-tools-utils/src/QueryResolver.php',
+    'JohannSchopplich\\SerpPreview\\SerpPreviewField' => $baseDir . '/src/classes/SerpPreview/SerpPreviewField.php',
     'Kirby\\ComposerInstaller\\CmsInstaller' => $vendorDir . '/getkirby/composer-installer/src/ComposerInstaller/CmsInstaller.php',
     'Kirby\\ComposerInstaller\\Installer' => $vendorDir . '/getkirby/composer-installer/src/ComposerInstaller/Installer.php',
     'Kirby\\ComposerInstaller\\Plugin' => $vendorDir . '/getkirby/composer-installer/src/ComposerInstaller/Plugin.php',

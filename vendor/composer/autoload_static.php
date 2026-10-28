@@ -13,7 +13,7 @@ class ComposerStaticInite551867c2cbcbc78382bc98cc9d875e5
         ),
         'J' =>
         array (
-            'JohannSchopplich\\KirbyTools\\' => 28,
+            'JohannSchopplich\\' => 17,
         ),
     );
 
@@ -22,18 +22,15 @@ class ComposerStaticInite551867c2cbcbc78382bc98cc9d875e5
         array (
             0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
         ),
-        'JohannSchopplich\\KirbyTools\\' =>
+        'JohannSchopplich\\' =>
         array (
-            0 => __DIR__ . '/..' . '/johannschopplich/kirby-tools-utils/src',
+            0 => __DIR__ . '/../..' . '/src/classes',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'JohannSchopplich\\KirbyTools\\FieldNormalizer' => __DIR__ . '/..' . '/johannschopplich/kirby-tools-utils/src/FieldNormalizer.php',
-        'JohannSchopplich\\KirbyTools\\FieldResolver' => __DIR__ . '/..' . '/johannschopplich/kirby-tools-utils/src/FieldResolver.php',
-        'JohannSchopplich\\KirbyTools\\ModelResolver' => __DIR__ . '/..' . '/johannschopplich/kirby-tools-utils/src/ModelResolver.php',
-        'JohannSchopplich\\KirbyTools\\QueryResolver' => __DIR__ . '/..' . '/johannschopplich/kirby-tools-utils/src/QueryResolver.php',
+        'JohannSchopplich\\SerpPreview\\SerpPreviewField' => __DIR__ . '/../..' . '/src/classes/SerpPreview/SerpPreviewField.php',
         'Kirby\\ComposerInstaller\\CmsInstaller' => __DIR__ . '/..' . '/getkirby/composer-installer/src/ComposerInstaller/CmsInstaller.php',
         'Kirby\\ComposerInstaller\\Installer' => __DIR__ . '/..' . '/getkirby/composer-installer/src/ComposerInstaller/Installer.php',
         'Kirby\\ComposerInstaller\\Plugin' => __DIR__ . '/..' . '/getkirby/composer-installer/src/ComposerInstaller/Plugin.php',
