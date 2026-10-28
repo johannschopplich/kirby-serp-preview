@@ -15,5 +15,5 @@ pnpm run build         # build the Panel bundle (index.js / index.css)
 
 ## Conventions
 
-- Formatter closures stay on the server. The Panel receives only booleans saying whether a title or description formatter is configured, and calls the `format/*` route to apply them.
+- Formatter closures stay on the server; the Panel applies them through the `format/*` route.
 - `src/panel/site.ts` feeds kirby.tools' Panel mocks.
