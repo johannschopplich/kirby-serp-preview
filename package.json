@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier \"src/panel/**\" \"tests/panel/**\" --write",
     "test": "vitest",
-    "test:types": "tsc --noEmit",
+    "test:types": "vue-tsc --noEmit",
     "release": "pnpm run build && bumpp --all --execute \"npx zx scripts/pre-release.mjs\" && zx scripts/post-release.mjs"
   },
   "devDependencies": {
@@ -33,6 +33,7 @@
     "vite": "^8.3.5",
     "vitest": "^5.0.5",
     "vue": "^3.5.44",
+    "vue-tsc": "^3.3.13",
     "zx": "^8.8.5"
   }
 }
