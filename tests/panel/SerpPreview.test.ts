@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import { expect, it, vi } from "vitest";
-import { defineComponent, h, ref } from "vue";
+import { ref } from "vue";
 import SerpPreview from "../../src/panel/components/SerpPreview.vue";
 
 vi.mock("kirbyuse", () => ({
@@ -10,17 +10,8 @@ vi.mock("kirbyuse", () => ({
   usePanel: () => ({ view: { title: "Home" }, t: (key: string) => key }),
 }));
 
-// Mirrors Kirby's `k-field`, which renders its `disabled` prop as `data-disabled`.
-const KField = defineComponent({
-  props: { disabled: Boolean },
-  setup:
-    (props, { slots }) =>
-    () =>
-      h("div", { "data-disabled": props.disabled }, slots.default?.()),
-});
-
 it("keeps disabled off k-field", () => {
-  const wrapper = mount(SerpPreview, {
+  const wrapper = shallowMount(SerpPreview, {
     props: {
       name: "serp",
       label: "SERP Preview",
@@ -28,8 +19,8 @@ it("keeps disabled off k-field", () => {
       previewPath: "/",
     },
     attrs: { disabled: true },
-    global: { stubs: { "k-button": true, "k-field": KField } },
+    global: { stubs: { "k-button": true, "k-field": true } },
   });
 
-  expect(wrapper.find('[data-disabled="true"]').exists()).toBe(false);
+  expect(wrapper.attributes("disabled")).toBeUndefined();
 });
