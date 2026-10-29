@@ -30,6 +30,26 @@ composer require johannschopplich/kirby-serp-preview
 
 Download and copy this repository to `/site/plugins/kirby-serp-preview`.
 
+## Upgrading from SERP Preview 1
+
+SERP Preview 2 requires Kirby 6, which has no plugin sections, so the SERP Preview section is a field now. Kirby shows `Invalid section type ("serp-preview")` until you move it from `sections:` to `fields:`. Its options stay the same:
+
+```yaml
+# SERP Preview 1
+sections:
+  serpPreview:
+    type: serp-preview
+    descriptionContentKey: metaDescription
+
+# SERP Preview 2
+fields:
+  serpPreview:
+    type: serp-preview
+    descriptionContentKey: metaDescription
+```
+
+Options that take a query resolve as Kirby string templates, so single braces count as a query too: `{ site.title }` resolves like `{{ site.title }}`, and a literal `{…}` in the value is replaced.
+
 ## Documentation
 
 For installation, configuration, and usage, see the [Kirby SERP Preview documentation](https://kirby.tools/docs/serp-preview).
