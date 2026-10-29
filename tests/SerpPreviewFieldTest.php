@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 final class SerpPreviewFieldTest extends TestCase
 {
     #[Test]
-    public function props_carry_resolved_queries_lowercased_content_keys_and_the_preview_path(): void
+    public function props_carry_resolved_queries_lowercased_content_keys_the_preview_path_and_the_default_titleSeparator(): void
     {
         $app = $this->bootApp([
             'site' => [
@@ -28,23 +28,18 @@ final class SerpPreviewFieldTest extends TestCase
         ]);
         $props = $this->field($app, [
             'defaultTitle' => '{{ site.title }} · {{ page.metaTitle }}',
-            'titleContentKey' => 'SEOTitle',
-            'titleSeparator' => '|'
+            'titleContentKey' => 'SEOTitle'
         ])->toArray();
 
-        $this->assertSame([
+        $expected = [
             'defaultTitle' => 'Example · About Meta',
             'previewPath' => 'about',
             'siteTitle' => 'Example',
             'titleContentKey' => 'seotitle',
-            'titleSeparator' => '|'
-        ], array_intersect_key($props, array_flip([
-            'defaultTitle',
-            'previewPath',
-            'siteTitle',
-            'titleContentKey',
-            'titleSeparator'
-        ])));
+            'titleSeparator' => '–'
+        ];
+
+        $this->assertSame($expected, array_intersect_key($props, $expected));
     }
 
     #[Test]
