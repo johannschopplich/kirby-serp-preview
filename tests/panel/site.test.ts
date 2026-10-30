@@ -19,9 +19,9 @@ describe("site barrel", () => {
   it("loads without `window`", async () => {
     expect(globalThis.window).toBeUndefined();
 
-    const { SerpPreview } = await import("../../src/panel/site");
+    const { Field } = await import("../../src/panel/site");
 
-    expect(SerpPreview).toBeTypeOf("object");
+    expect(Field).toBeTypeOf("object");
   });
 
   it("imports only the packages in PACKAGE_IMPORTS", async () => {
