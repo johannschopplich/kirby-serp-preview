@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { useApi, useContent, usePanel } from "kirbyuse";
+import { useContent, usePanel } from "kirbyuse";
 // Aliased, since `<script setup>` exposes imports to the template, where they
 // would shadow the props of the same name.
 import {
@@ -36,7 +36,6 @@ const props = defineProps({
 });
 
 const panel = usePanel();
-const api = useApi();
 const { currentContent } = useContent();
 
 const title = computed(
@@ -105,7 +104,7 @@ watch(
 );
 
 async function formatProperty(prop: "title" | "description", value: string) {
-  const response = await api.post<{ text: string }>(
+  const response = await panel.api.post<{ text: string }>(
     `${props.endpoints!.field}/format/${prop}`,
     { value },
   );

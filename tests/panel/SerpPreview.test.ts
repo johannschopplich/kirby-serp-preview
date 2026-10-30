@@ -5,9 +5,12 @@ import { ref } from "vue";
 import SerpPreview from "../../src/panel/components/SerpPreview.vue";
 
 vi.mock("kirbyuse", () => ({
-  useApi: () => ({ post: vi.fn() }),
   useContent: () => ({ currentContent: ref({}) }),
-  usePanel: () => ({ view: { title: "Home" }, t: (key: string) => key }),
+  usePanel: () => ({
+    api: { post: vi.fn() },
+    view: { title: "Home" },
+    t: (key: string) => key,
+  }),
 }));
 
 it("keeps disabled off k-field", () => {
