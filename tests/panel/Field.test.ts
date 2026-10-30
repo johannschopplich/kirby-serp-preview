@@ -2,7 +2,7 @@
 import { shallowMount } from "@vue/test-utils";
 import { expect, it, vi } from "vitest";
 import { ref } from "vue";
-import SerpPreview from "../../src/panel/components/SerpPreview.vue";
+import Field from "../../src/panel/components/Field.vue";
 
 vi.mock("kirbyuse", () => ({
   useContent: () => ({ currentContent: ref({}) }),
@@ -14,7 +14,7 @@ vi.mock("kirbyuse", () => ({
 }));
 
 it("keeps disabled off k-field", () => {
-  const wrapper = shallowMount(SerpPreview, {
+  const wrapper = shallowMount(Field, {
     props: {
       name: "serp",
       label: "SERP Preview",

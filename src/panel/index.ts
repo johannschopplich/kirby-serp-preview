@@ -1,8 +1,8 @@
-import SerpPreview from "./components/SerpPreview.vue";
+import Field from "./components/Field.vue";
 import "virtual:uno.css";
 
 window.panel.plugin("johannschopplich/serp-preview", {
   fields: {
-    "serp-preview": SerpPreview,
+    "serp-preview": Field,
   },
 });
