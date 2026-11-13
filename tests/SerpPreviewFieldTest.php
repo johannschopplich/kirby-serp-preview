@@ -55,6 +55,15 @@ final class SerpPreviewFieldTest extends TestCase
     }
 
     #[Test]
+    public function label_falls_back_to_english_in_the_unshipped_es_translation(): void
+    {
+        $app = $this->bootApp([]);
+        $app->setCurrentTranslation('es');
+
+        $this->assertSame('SERP Preview', $this->field($app)->label());
+    }
+
+    #[Test]
     public function previewPath_leaves_out_the_subfolder_of_a_subfolder_install(): void
     {
         $app = $this->bootApp([]);

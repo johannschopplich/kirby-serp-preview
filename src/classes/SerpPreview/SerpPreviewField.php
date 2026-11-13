@@ -11,6 +11,7 @@ use Kirby\Exception\NotFoundException;
 use Kirby\Form\Field\DisplayField;
 use Kirby\Http\Url;
 use Kirby\Reflection\Attributes\Prop;
+use Kirby\Toolkit\I18n;
 use Kirby\Toolkit\Str;
 
 final class SerpPreviewField extends DisplayField
@@ -47,7 +48,7 @@ final class SerpPreviewField extends DisplayField
         // The blueprint normalizer sets the label to `Str::label()` of the key when
         // none is given, so that value counts as unset.
         if ($this->label === null || $this->label === Str::label($this->name ?? '')) {
-            return $this->i18n('johannschopplich.serp-preview.label');
+            return I18n::translate('johannschopplich.serp-preview.label');
         }
 
         return parent::label();
