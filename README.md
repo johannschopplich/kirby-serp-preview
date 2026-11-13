@@ -4,6 +4,17 @@
 
 Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a Panel field that draws the Google result snippet for the page being edited – favicon, site name, URL, title, and description – and redraws it as you type, before anything is saved.
 
+## When to Use
+
+| I want to…                                                 | Use                                                                                        |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| See a page's Google result snippet while I edit it         | `serp-preview` field                                                                       |
+| Draw the snippet from my meta title and description fields | `titleContentKey` and `descriptionContentKey`                                              |
+| Shorten the snippet text the way my templates do           | `formatters` option                                                                        |
+| Show the production host on a staging install              | `siteUrl`                                                                                  |
+| Render the meta tags in a page's `<head>`                  | The site's templates, or `$page->meta()` from [Kirby Helpers](https://kirby.tools/helpers) |
+| Run SEO and readability assessments on a page's content    | [Kirby SEO Audit](https://kirby.tools/seo-audit)                                           |
+
 ## Features
 
 - 🖱️ **One Field, Any Page**: Add the field type to a page or site blueprint – there is nothing else to set up.
@@ -28,7 +39,7 @@ composer require johannschopplich/kirby-serp-preview
 
 ### Manual Installation
 
-Download and copy this repository to `/site/plugins/kirby-serp-preview`.
+Download a [release](https://github.com/johannschopplich/kirby-serp-preview/releases) and extract it to `/site/plugins/kirby-serp-preview`.
 
 ## Upgrading from SERP Preview 1
 
