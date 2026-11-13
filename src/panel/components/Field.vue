@@ -107,6 +107,7 @@ async function formatProperty(prop: "title" | "description", value: string) {
   const response = await panel.api.post<{ text: string }>(
     `${props.endpoints!.field}/format/${prop}`,
     { value },
+    { silent: true },
   );
 
   return response.text;
