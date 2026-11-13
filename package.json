@@ -27,7 +27,6 @@
     "kirby-types": "^2.0.0-beta.5",
     "kirbyup": "^4.0.0-beta.1",
     "kirbyuse": "^2.0.0-beta.4",
-    "p-throttle": "^8.1.1",
     "prettier": "^3.9.10",
     "typescript": "^6.0.3",
     "ufo": "^1.6.4",

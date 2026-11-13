@@ -7,13 +7,7 @@ const SITE_ENTRY = fileURLToPath(
   new URL("../../src/panel/site.ts", import.meta.url),
 );
 
-const PACKAGE_IMPORTS = [
-  "kirbyuse",
-  "kirbyuse/props",
-  "p-throttle",
-  "ufo",
-  "vue",
-];
+const PACKAGE_IMPORTS = ["kirbyuse", "kirbyuse/props", "ufo", "vue"];
 
 describe("site barrel", () => {
   it("loads without `window`", async () => {

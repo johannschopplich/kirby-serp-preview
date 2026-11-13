@@ -202,9 +202,6 @@ importers:
       kirbyuse:
         specifier: ^2.0.0-beta.4
         version: 2.0.0-beta.4(vue@3.5.44(typescript@6.0.3))
-      p-throttle:
-        specifier: ^8.1.1
-        version: 8.1.1
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
@@ -2497,10 +2494,6 @@ packages:
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
-
-  p-throttle@8.1.1:
-    resolution: {integrity: sha512-xxWFBUyvbrQ10XC3VAr0SoXoOCKXqCX/yvbFIkBE98upphHFwjIKR6AId13ZH3jngFfF6yK43QTOtrngYAmFMA==}
-    engines: {node: '>=20'}
 
   p-timeout@6.1.4:
     resolution: {integrity: sha512-MyIV3ZA/PmyBN/ud8vV9XzwTrNtR4jFrObymZYnZqMmW0zA8Z17vnT0rBgFE/TlohB+YCHqXMgZzb3Csp49vqg==}
@@ -5433,8 +5426,6 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
-
-  p-throttle@8.1.1: {}
 
   p-timeout@6.1.4: {}
 

@@ -6,6 +6,7 @@ import Field from "../../src/panel/components/Field.vue";
 
 vi.mock("kirbyuse", () => ({
   useContent: () => ({ currentContent: ref({}) }),
+  useHelpers: () => ({ debounce: (callback: unknown) => callback }),
   usePanel: () => ({
     api: { post: vi.fn() },
     view: { title: "Home" },

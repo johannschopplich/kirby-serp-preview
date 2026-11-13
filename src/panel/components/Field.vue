@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { useContent, usePanel } from "kirbyuse";
+import { useContent, useHelpers, usePanel } from "kirbyuse";
 // Aliased, since `<script setup>` exposes imports to the template, where they
 // would shadow the props of the same name.
 import {
@@ -10,7 +10,6 @@ import {
   label as labelProp,
   name as nameProp,
 } from "kirbyuse/props";
-import pThrottle from "p-throttle";
 import { joinURL } from "ufo";
 import { computed, ref, watch } from "vue";
 
@@ -36,6 +35,7 @@ const props = defineProps({
 });
 
 const panel = usePanel();
+const helpers = useHelpers();
 const { currentContent } = useContent();
 
 const title = computed(
@@ -55,39 +55,42 @@ const description = computed(
 const titleProxy = ref("");
 const descriptionProxy = ref("");
 
-const throttle = pThrottle({
-  limit: 1,
-  interval: 250,
-});
-
 // Monotonic tokens guard against a slow response overwriting a newer value.
 let titleFormatToken = 0;
-const throttledFormatTitle = throttle(async (value) => {
-  const token = ++titleFormatToken;
-  try {
-    const text = await formatProperty("title", value);
-    if (token === titleFormatToken) titleProxy.value = text;
-  } catch {
-    // Keep the last successfully formatted value on failure.
-  }
-});
+const debouncedFormatTitle = helpers.debounce(
+  async (value: string) => {
+    const token = ++titleFormatToken;
+    try {
+      const text = await formatProperty("title", value);
+      if (token === titleFormatToken) titleProxy.value = text;
+    } catch {
+      // Keep the last successfully formatted value on failure.
+    }
+  },
+  250,
+  { leading: true, trailing: true },
+);
 
 let descriptionFormatToken = 0;
-const throttledFormatDescription = throttle(async (value) => {
-  const token = ++descriptionFormatToken;
-  try {
-    const text = await formatProperty("description", value);
-    if (token === descriptionFormatToken) descriptionProxy.value = text;
-  } catch {
-    // Keep the last successfully formatted value on failure.
-  }
-});
+const debouncedFormatDescription = helpers.debounce(
+  async (value: string) => {
+    const token = ++descriptionFormatToken;
+    try {
+      const text = await formatProperty("description", value);
+      if (token === descriptionFormatToken) descriptionProxy.value = text;
+    } catch {
+      // Keep the last successfully formatted value on failure.
+    }
+  },
+  250,
+  { leading: true, trailing: true },
+);
 
 watch(
   title,
   (value) => {
     if (props.formatters?.title) {
-      throttledFormatTitle(value);
+      debouncedFormatTitle(value);
     }
   },
   { immediate: true },
@@ -97,7 +100,7 @@ watch(
   description,
   (value) => {
     if (props.formatters?.description) {
-      throttledFormatDescription(value);
+      debouncedFormatDescription(value);
     }
   },
   { immediate: true },
