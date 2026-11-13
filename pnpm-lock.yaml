@@ -197,8 +197,8 @@ importers:
         specifier: ^2.0.0-beta.5
         version: 2.0.0-beta.5(vue@3.5.44(typescript@6.0.3))
       kirbyup:
-        specifier: ^4.0.0-beta.1
-        version: 4.0.0-beta.1(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
+        specifier: ^4.0.0-beta.2
+        version: 4.0.0-beta.2(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
       kirbyuse:
         specifier: ^2.0.0-beta.4
         version: 2.0.0-beta.4(vue@3.5.44(typescript@6.0.3))
@@ -2119,8 +2119,8 @@ packages:
       vue:
         optional: true
 
-  kirbyup@4.0.0-beta.1:
-    resolution: {integrity: sha512-Rd0EyZaLeV43h5IP4vCKxjYzo/gC/AQ02QuvHrh17F2fuKpifIsfvbAAY6hqUjmcpzDvkx3LWP7Y6h5M6LyOqg==}
+  kirbyup@4.0.0-beta.2:
+    resolution: {integrity: sha512-g94dCXomkiZtcAz45AMpIezGmkIlRQEX68y3OY1p21IVgY2j1mTFUpF0q/svKvqrwC6cgd4m4sM6hitGMhCx+Q==}
     engines: {node: '>=24'}
     hasBin: true
 
@@ -4855,7 +4855,7 @@ snapshots:
     optionalDependencies:
       vue: 3.5.44(typescript@6.0.3)
 
-  kirbyup@4.0.0-beta.1(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1):
+  kirbyup@4.0.0-beta.2(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1):
     dependencies:
       '@vitejs/plugin-vue': 6.0.10(vite@8.3.5(@types/node@26.6.5)(jiti@2.7.0)(sass@1.105.2)(yaml@2.9.1))(vue@3.5.44(typescript@6.0.3))
       '@vitejs/plugin-vue-jsx': 5.1.6(vite@8.3.5(@types/node@26.6.5)(jiti@2.7.0)(sass@1.105.2)(yaml@2.9.1))(vue@3.5.44(typescript@6.0.3))
