@@ -43,6 +43,19 @@ final class SerpPreviewFieldTest extends TestCase
     }
 
     #[Test]
+    public function siteTitle_and_siteUrl_fall_back_to_the_site_when_their_query_resolves_to_an_empty_string(): void
+    {
+        $app = $this->bootApp(['site' => ['content' => ['title' => 'Example']]]);
+        $field = $this->field($app, [
+            'siteTitle' => '{{ page.missing }}',
+            'siteUrl' => '{{ page.missing }}'
+        ]);
+
+        $this->assertSame('Example', $field->siteTitle());
+        $this->assertSame('https://example.com/sub', $field->siteUrl());
+    }
+
+    #[Test]
     public function label_falls_back_to_the_plugin_translation_unless_the_blueprint_sets_one(): void
     {
         $app = $this->bootApp([]);

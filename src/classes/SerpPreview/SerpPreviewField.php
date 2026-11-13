@@ -61,12 +61,12 @@ final class SerpPreviewField extends DisplayField
 
     public function siteTitle(): string|null
     {
-        return $this->stringTemplate($this->siteTitle, safe: false) ?? $this->kirby()->site()->title()->value();
+        return $this->stringTemplate($this->siteTitle, safe: false) ?: $this->kirby()->site()->title()->value();
     }
 
     public function siteUrl(): string|null
     {
-        return $this->stringTemplate($this->siteUrl, safe: false) ?? $this->kirby()->url();
+        return $this->stringTemplate($this->siteUrl, safe: false) ?: $this->kirby()->url();
     }
 
     public function titleSeparator(): string
