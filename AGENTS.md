@@ -5,13 +5,15 @@ Kirby CMS Panel plugin that renders a live Google search result (SERP) preview o
 ## Commands
 
 ```bash
-composer test          # PHPUnit
-composer csfix         # php-cs-fixer, lives in tools/phpcs/vendor/bin/, not vendor/bin/
-pnpm run test:types    # typecheck with tsc
-pnpm run lint          # ESLint
-pnpm run build         # build the Panel bundle (index.js / index.css)
+composer test
+composer csfix         # lives in tools/phpcs/vendor/bin/, not vendor/bin/
+pnpm run test --run
+pnpm run test:types
+pnpm run lint
+pnpm run build         # after a change in src/panel/; index.js and index.css are committed
 ```
 
 ## Conventions
 
-- Formatter closures stay on the server. The Panel receives only booleans saying whether a title or description formatter is configured, and calls the `format/*` route to apply them.
+- Formatter closures stay on the server; the Panel applies them through the `format/*` route.
+- `src/panel/site.ts` feeds kirby.tools' Panel mocks.

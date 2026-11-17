@@ -2,21 +2,32 @@
 
 # Kirby SERP Preview
 
-Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a Panel section that draws the Google result snippet for the page being edited – favicon, site name, URL, title, and description – and redraws it as you type, before anything is saved.
+Kirby SERP Preview is a plugin for [Kirby CMS](https://getkirby.com). It adds a Panel field that draws the Google result snippet for the page being edited – favicon, site name, URL, title, and description – and redraws it as you type, before anything is saved.
+
+## When to Use
+
+| I want to…                                                 | Use                                                                                        |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| See a page's Google result snippet while I edit it         | `serp-preview` field                                                                       |
+| Draw the snippet from my meta title and description fields | `titleContentKey` and `descriptionContentKey`                                              |
+| Shorten the snippet text the way my templates do           | `formatters` option                                                                        |
+| Show the production host on a staging install              | `siteUrl`                                                                                  |
+| Render the meta tags in a page's `<head>`                  | The site's templates, or `$page->meta()` from [Kirby Helpers](https://kirby.tools/helpers) |
+| Run SEO and readability assessments on a page's content    | [Kirby SEO Audit](https://kirby.tools/seo-audit)                                           |
 
 ## Features
 
-- 🖱️ **One Section, Any Page**: Add the section type to a page or site blueprint – there is nothing else to set up.
+- 🖱️ **One Field, Any Page**: Add the field type to a page or site blueprint – there is nothing else to set up.
 - ⚡ **Redraws as You Type**: The snippet follows the open form rather than the saved content, and never writes back.
 - 🏷️ **Title and Description Fields**: Name the fields it reads, each with a fallback for when they are empty.
 - ✂️ **Formatters**: Trim or clean the text the way your templates do, so the snippet matches the live page.
 - 🧩 **Kirby Queries**: Every property the snippet shows accepts `{{ ... }}`, resolved against the current model.
-- 🔗 **Search Console Link**: An optional button below the snippet, pointing at the URL you configure.
+- 🔗 **Search Console Link**: An optional button in the field header, pointing at the URL you configure.
 - 🌓 **Light and Dark Mode**: Google's own snippet colors, following the Panel theme.
 
 ## Requirements
 
-- Kirby 4 or Kirby 5
+- Kirby 6
 
 ## Installation
 
@@ -28,7 +39,21 @@ composer require johannschopplich/kirby-serp-preview
 
 ### Manual Installation
 
-Download and copy this repository to `/site/plugins/kirby-serp-preview`.
+Download a [release](https://github.com/johannschopplich/kirby-serp-preview/releases) and extract it to `/site/plugins/kirby-serp-preview`.
+
+## Upgrading from SERP Preview 1
+
+SERP Preview 2 requires Kirby 6, which has no plugin sections, so the SERP Preview section is a field now. Kirby shows `Invalid section type ("serp-preview")` until you move it from `sections:` to `fields:`. Its options stay the same:
+
+```diff
+-sections:
++fields:
+   serpPreview:
+     type: serp-preview
+     descriptionContentKey: metaDescription
+```
+
+Options that take a query resolve as Kirby string templates, so single braces count as a query too: `{ site.title }` resolves like `{{ site.title }}`, and a literal `{…}` in the value is replaced.
 
 ## Documentation
 

@@ -60,7 +60,7 @@ App::plugin('johannschopplich/playground', [
                     [
                         'pattern' => '(:all)',
                         'action' => function () use ($kirby) {
-                            go(Panel::url($kirby->user() === null ? 'login' : 'site'));
+                            go($kirby->panel()->url($kirby->user() === null ? 'login' : 'site'));
                         }
                     ]
                 ],

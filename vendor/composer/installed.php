@@ -28,14 +28,5 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'johannschopplich/kirby-tools-utils' => array(
-            'pretty_version' => '0.1.4',
-            'version' => '0.1.4.0',
-            'reference' => '71b4b67f466c6c99b5fbe5a21a2e40d63d3e7b5d',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../johannschopplich/kirby-tools-utils',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
     ),
 );

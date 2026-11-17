@@ -15,11 +15,5 @@ return [
             'title' => fn (string $value) => Str::short($value, 60),
             'description' => fn (string $value) => Str::short(strip_tags($value), 160)
         ]
-    ],
-
-    'panel' => [
-        'vue' => [
-            'compiler' => false
-        ]
     ]
 ];
