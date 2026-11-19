@@ -194,14 +194,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       kirby-types:
-        specifier: ^2.0.0-beta.7
-        version: 2.0.0-beta.7(vue@3.5.44(typescript@6.0.3))
+        specifier: ^2.0.0-beta.8
+        version: 2.0.0-beta.8(vue@3.5.44(typescript@6.0.3))
       kirbyup:
         specifier: ^4.0.0-beta.2
         version: 4.0.0-beta.2(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
       kirbyuse:
-        specifier: ^2.0.0-beta.6
-        version: 2.0.0-beta.6(vue@3.5.44(typescript@6.0.3))
+        specifier: ^2.0.0-beta.7
+        version: 2.0.0-beta.7(vue@3.5.44(typescript@6.0.3))
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
@@ -2090,8 +2090,8 @@ packages:
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
 
-  kirby-types@2.0.0-beta.7:
-    resolution: {integrity: sha512-b9W+gfHuDDb7Dzq48o+WjHp71l0mDaYwYb/zPDSIyPzlsyzlSZiqnVmahoRchx087Mc1DG1LH0clpPUaxhBhMg==}
+  kirby-types@2.0.0-beta.8:
+    resolution: {integrity: sha512-tfn8qXkaTEpN0L83sU7I9xLG1v31HqJ9KKe77iedfgDgiezI87D+5zzbL26M/FJnKfR1Me9bAJS42FIPAQRvOA==}
     peerDependencies:
       dayjs: ^1.11.13
       prosemirror-commands: ^1.7.1
@@ -2124,8 +2124,8 @@ packages:
     engines: {node: '>=24'}
     hasBin: true
 
-  kirbyuse@2.0.0-beta.6:
-    resolution: {integrity: sha512-DUAfvIVIl6RvleUwGS6kvQmss57iq19GBxyaVv3kvG+WhmyqtMDjkQaJE7vw6uE0vDPPRMGJMbR0k3RcdAbW3A==}
+  kirbyuse@2.0.0-beta.7:
+    resolution: {integrity: sha512-4+sXO2E40/PbPuir7xE/Nuau4Cc4BWkz9dkoQUscK+ktCY74r1mTvhTb5Jeuc9x8KDqc14jmQMloWuEnrBO9bg==}
     peerDependencies:
       dayjs: ^1.0.0
       prosemirror-commands: ^1.7.1
@@ -4851,7 +4851,7 @@ snapshots:
     dependencies:
       '@keyv/serialize': 1.1.1
 
-  kirby-types@2.0.0-beta.7(vue@3.5.44(typescript@6.0.3)):
+  kirby-types@2.0.0-beta.8(vue@3.5.44(typescript@6.0.3)):
     optionalDependencies:
       vue: 3.5.44(typescript@6.0.3)
 
@@ -4886,9 +4886,9 @@ snapshots:
       - typescript
       - yaml
 
-  kirbyuse@2.0.0-beta.6(vue@3.5.44(typescript@6.0.3)):
+  kirbyuse@2.0.0-beta.7(vue@3.5.44(typescript@6.0.3)):
     dependencies:
-      kirby-types: 2.0.0-beta.7(vue@3.5.44(typescript@6.0.3))
+      kirby-types: 2.0.0-beta.8(vue@3.5.44(typescript@6.0.3))
       vue: 3.5.44(typescript@6.0.3)
 
   levn@0.4.1:

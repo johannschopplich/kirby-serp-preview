@@ -1,6 +1,7 @@
 minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - kirbyuse@2.0.0-beta.6
+  - kirbyuse@2.0.0-beta.7
+  - kirby-types@2.0.0-beta.8
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
