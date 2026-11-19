@@ -42,7 +42,12 @@ const title = computed(
   () =>
     currentContent.value[props.titleContentKey!] ||
     props.defaultTitle ||
-    [panel.view.title, props.titleSeparator, props.siteTitle].join(" "),
+    // Kirby's preview view titles itself "<title> | Preview".
+    [
+      currentContent.value.title || panel.view.title,
+      props.titleSeparator,
+      props.siteTitle,
+    ].join(" "),
 );
 const description = computed(
   () =>
