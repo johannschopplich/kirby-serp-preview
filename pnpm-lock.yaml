@@ -194,8 +194,8 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       kirby-types:
-        specifier: ^2.0.0-beta.8
-        version: 2.0.0-beta.8(vue@3.5.44(typescript@6.0.3))
+        specifier: ^2.0.0-beta.9
+        version: 2.0.0-beta.9(vue@3.5.44(typescript@6.0.3))
       kirbyup:
         specifier: ^4.0.0-beta.2
         version: 4.0.0-beta.2(@types/node@26.6.5)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(typescript@6.0.3)(yaml@2.9.1)
@@ -2090,8 +2090,8 @@ packages:
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
 
-  kirby-types@2.0.0-beta.8:
-    resolution: {integrity: sha512-tfn8qXkaTEpN0L83sU7I9xLG1v31HqJ9KKe77iedfgDgiezI87D+5zzbL26M/FJnKfR1Me9bAJS42FIPAQRvOA==}
+  kirby-types@2.0.0-beta.9:
+    resolution: {integrity: sha512-8QvXU7rKPni/rI0AqAr/v+n8r6WVcMc2kC7m7dtVfhomhEupESGNmRy8gKQtLGAwWtpGrpXfhPJwf3TXkrGqLw==}
     peerDependencies:
       dayjs: ^1.11.13
       prosemirror-commands: ^1.7.1
@@ -4851,7 +4851,7 @@ snapshots:
     dependencies:
       '@keyv/serialize': 1.1.1
 
-  kirby-types@2.0.0-beta.8(vue@3.5.44(typescript@6.0.3)):
+  kirby-types@2.0.0-beta.9(vue@3.5.44(typescript@6.0.3)):
     optionalDependencies:
       vue: 3.5.44(typescript@6.0.3)
 
@@ -4888,7 +4888,7 @@ snapshots:
 
   kirbyuse@2.0.0-beta.7(vue@3.5.44(typescript@6.0.3)):
     dependencies:
-      kirby-types: 2.0.0-beta.8(vue@3.5.44(typescript@6.0.3))
+      kirby-types: 2.0.0-beta.9(vue@3.5.44(typescript@6.0.3))
       vue: 3.5.44(typescript@6.0.3)
 
   levn@0.4.1:
