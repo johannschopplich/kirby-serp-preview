@@ -11,7 +11,7 @@ export default antfu({
       },
     },
   },
-  ignores: ["**/assets/**", "**/vendor/**", "index.js"],
+  ignores: ["**/vendor/**", "assets/**", "index.js"],
 }).append({
   files: ["**/*.vue"],
   rules: {
@@ -19,6 +19,7 @@ export default antfu({
     "vue/html-closing-bracket-newline": "off",
     "vue/html-indent": "off",
     "vue/html-self-closing": "off",
+    "vue/multiline-html-element-content-newline": "off",
     "vue/singleline-html-element-content-newline": "off",
   },
 });
