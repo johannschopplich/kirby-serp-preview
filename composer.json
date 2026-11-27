@@ -30,7 +30,7 @@
   },
   "require-dev": {
     "getkirby/cms": "^6.0",
-    "phpunit/phpunit": "^12",
+    "phpunit/phpunit": "^13",
     "vlucas/phpdotenv": "^5"
   },
   "conflict": {
