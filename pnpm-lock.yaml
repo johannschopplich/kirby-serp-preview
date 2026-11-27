@@ -204,11 +204,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       kirby-types:
-        specifier: ^1.8.2
-        version: 1.8.2(vue@2.7.16)
+        specifier: ^1.9.0
+        version: 1.9.0(vue@2.7.16)
       kirbyup:
-        specifier: ^3.5.0
-        version: 3.5.0(@types/node@26.6.11)(jiti@2.7.0)(rollup@4.68.8)(yaml@2.9.1)
+        specifier: ^3.5.1
+        version: 3.5.1(@types/node@26.6.11)(jiti@2.7.0)(rollup@4.68.8)(yaml@2.9.1)
       kirbyuse:
         specifier: ^1.4.2
         version: 1.4.2
@@ -2110,8 +2110,8 @@ packages:
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
 
-  kirby-types@1.8.2:
-    resolution: {integrity: sha512-vAdCsrT7tN++7LYLA0ui6xh9V6SKsqCnO0xhcdIiCaXbRFWrXLCl/y8njXee2D3Ti+hCNwSCOD5KwpZ8oh9loA==}
+  kirby-types@1.9.0:
+    resolution: {integrity: sha512-QwAysOkztXdq056R2FCo3UULmduNnmLVzsbhPIIbkpqxiR/HWE8uSugCuw8MREcRcxkai9rasr+n/ZfvD3xyVA==}
     peerDependencies:
       dayjs: ^1.11.13
       prosemirror-commands: ^1.7.1
@@ -2139,8 +2139,8 @@ packages:
       vue:
         optional: true
 
-  kirbyup@3.5.0:
-    resolution: {integrity: sha512-sONYkK8F3IdfUYSn/c11uFz0+5q7ukk5UEFNvbInsHGSsKhMACfOY9a6V21IpL0MJjyGCBqU4akfB3l2unLJ4Q==}
+  kirbyup@3.5.1:
+    resolution: {integrity: sha512-vLpt+65NE3nAzTxyNSmbFoUYfl2cs/W+g2cuLvrneBdW2x0E5seoBRBNHWShpAzANamYGMhut7n1HHZyrvRMqA==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -2173,10 +2173,6 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
-
-  lilconfig@3.1.5:
-    resolution: {integrity: sha512-aRAOI9Ia43ygL4o1EOmC/sc/0OFxrm7qcQngiIyWaqVnSnz932ybJ07zyCcgMNGSDP8Yxaf88Xj1zHEXmvQ4SA==}
-    engines: {node: '>=14'}
 
   local-pkg@1.2.1:
     resolution: {integrity: sha512-++gUqRDEvcnN6Zhqrr+y/CkVEHhlrR96vZn3nZZPYzMcBUyBtTKzB9NadClFIsIVSsu+3i9tfk/erqy9kAmt7Q==}
@@ -2484,24 +2480,6 @@ packages:
 
   pnpm-workspace-yaml@1.9.1:
     resolution: {integrity: sha512-Xj/T2X6DNAWbtk/9UQ0/TJRswltiHZevmcMjqoL7WrpJi67lu3qaslU4+I+zJ8wtwqmuvAE0KkB8rbv2ZdogBg==}
-
-  postcss-load-config@6.0.1:
-    resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      jiti: '>=1.21.0'
-      postcss: '>=8.0.9'
-      tsx: ^4.8.1
-      yaml: ^2.4.2
-    peerDependenciesMeta:
-      jiti:
-        optional: true
-      postcss:
-        optional: true
-      tsx:
-        optional: true
-      yaml:
-        optional: true
 
   postcss-selector-parser@7.2.1:
     resolution: {integrity: sha512-GwxlMgTTXwIom+ebC7an3k6RaJDwklRQQnfiXsLPGicu8FYV/k/+1/9YY2OU2+r938H2t4X0TDxoif+HP2rjzQ==}
@@ -4726,11 +4704,11 @@ snapshots:
     dependencies:
       '@keyv/serialize': 1.1.1
 
-  kirby-types@1.8.2(vue@2.7.16):
+  kirby-types@1.9.0(vue@2.7.16):
     optionalDependencies:
       vue: 2.7.16
 
-  kirbyup@3.5.0(@types/node@26.6.11)(jiti@2.7.0)(rollup@4.68.8)(yaml@2.9.1):
+  kirbyup@3.5.1(@types/node@26.6.11)(jiti@2.7.0)(rollup@4.68.8)(yaml@2.9.1):
     dependencies:
       '@vitejs/plugin-vue2': 2.3.4(vite@6.4.6(@types/node@26.6.11)(jiti@2.7.0)(sass@1.108.2)(yaml@2.9.1))(vue@2.7.16)
       '@vitejs/plugin-vue2-jsx': 1.1.1(rollup@4.68.8)(vite@6.4.6(@types/node@26.6.11)(jiti@2.7.0)(sass@1.108.2)(yaml@2.9.1))(vue@2.7.16)
@@ -4741,10 +4719,7 @@ snapshots:
       consola: 3.4.2
       magic-string: 0.30.21
       nypm: 0.6.12
-      pathe: 2.0.3
       perfect-debounce: 2.1.0
-      postcss: 8.5.33
-      postcss-load-config: 6.0.1(jiti@2.7.0)(postcss@8.5.33)(yaml@2.9.1)
       rollup-plugin-external-globals: 0.13.0(rollup@4.68.8)
       sass: 1.108.2
       strip-literal: 4.0.0
@@ -4768,15 +4743,13 @@ snapshots:
 
   kirbyuse@1.4.2:
     dependencies:
-      kirby-types: 1.8.2(vue@2.7.16)
+      kirby-types: 1.9.0(vue@2.7.16)
       vue: 2.7.16
 
   levn@0.4.1:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
-
-  lilconfig@3.1.5: {}
 
   local-pkg@1.2.1:
     dependencies:
@@ -5296,14 +5269,6 @@ snapshots:
 
   pnpm-workspace-yaml@1.9.1:
     dependencies:
-      yaml: 2.9.1
-
-  postcss-load-config@6.0.1(jiti@2.7.0)(postcss@8.5.33)(yaml@2.9.1):
-    dependencies:
-      lilconfig: 3.1.5
-    optionalDependencies:
-      jiti: 2.7.0
-      postcss: 8.5.33
       yaml: 2.9.1
 
   postcss-selector-parser@7.2.1:
